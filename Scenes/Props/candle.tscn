@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgtscjxcqoxls"]
+
+[ext_resource type="Texture2D" uid="uid://dvtntmnfw83ms" path="res://Assets/RF_Catacombs_v1.0/candleA_02.png" id="1_24qhp"]
+[ext_resource type="Texture2D" uid="uid://biomqy201h4yk" path="res://Assets/RF_Catacombs_v1.0/candleA_03.png" id="2_ntbip"]
+[ext_resource type="Texture2D" uid="uid://dri12hbajn7f7" path="res://Assets/RF_Catacombs_v1.0/candleA_04.png" id="3_hqrx1"]
+[ext_resource type="Texture2D" uid="uid://c0wvpyvnm1xyq" path="res://Assets/RF_Catacombs_v1.0/candleA_01.png" id="4_6sycj"]
+[ext_resource type="Material" uid="uid://id4bl5ph4sbj" path="res://candle_part_material.tres" id="5_g2xr2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdrfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_24qhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ntbip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hqrx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6sycj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_0u7ax"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb6np"]
+gradient = SubResource("Gradient_0u7ax")
+
+[node name="Candle" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.05837e-13, 4.76837e-07)
+rotation = -3.14159
+scale = Vector2(1.14286, 1.10476)
+sprite_frames = SubResource("SpriteFrames_mdrfm")
+frame_progress = 0.87695
+centered = false
+offset = Vector2(-3.5, -7)
+flip_v = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_pb6np")
+
+[node name="Particles2D" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = ExtResource("5_g2xr2")
