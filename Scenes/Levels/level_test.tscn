@@ -11,10 +11,12 @@
 [node name="Decor" type="Node2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("2_ftshv")]
-position = Vector2(441, 312)
+position = Vector2(497, 324)
 
 [node name="BatSpawnable" parent="." instance=ExtResource("3_a1ucf")]
 position = Vector2(248, 225)
+motion_mode = 0
 
 [node name="BatSpawnable2" parent="." instance=ExtResource("3_a1ucf")]
 position = Vector2(644, 251)
+motion_mode = 0

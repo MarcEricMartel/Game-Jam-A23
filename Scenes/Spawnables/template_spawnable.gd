@@ -8,9 +8,11 @@ const ATTACK_COOLDOWN : float = 100
 @export var speed : float = 0
 @export var damage : int = 0
 @export var priority : int = 0
+@export var expReward : int = 0
 @export var cost : int = 0
 @export var minSpawnRange : float = 0
 @export var canAttack : bool = true
+
 
 @onready var ai : Node = $AI
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -41,20 +43,21 @@ func _process(delta):
 	
 	if !isFacingLeft && direction.x < 0:
 		isFacingLeft = true
-		scale = Vector2(-1, 1)
+		scale.x = -1
+		scale.y = 1
 	elif isFacingLeft && direction.x > 0:
 		isFacingLeft = false
-		scale = Vector2(1, 1)
+		scale.x = -1
+		scale.y = -1
 		
 	velocity = direction * speed * delta
 	move_and_slide()
 	
 	if cooldown > 0:
 		if cooldown - attackSpeed * delta <= 0:
-			cooldown = 0
+			cooldown = 0 
 		else:
 			cooldown -= attackSpeed * delta
-			
 	attemptAttack()
 
 func attemptAttack():
@@ -71,6 +74,7 @@ func attack():
 
 func endAttack():
 	damageCollision.disabled = true
+	animatedSprite.disconnect("animation_finished", endAttack)
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
@@ -103,4 +107,4 @@ func clean():
 
 func _on_damage_area_body_entered(body):
 	if body == enemy:
-		enemy.receive_damage(damage)
+		body.receive_damage(damage)

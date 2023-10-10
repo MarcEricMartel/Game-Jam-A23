@@ -233,6 +233,7 @@ radius = 8.0
 [node name="TemplateSpawnable" type="CharacterBody2D"]
 collision_layer = 6
 collision_mask = 6
+motion_mode = 1
 script = ExtResource("1_rkej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
