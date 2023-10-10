@@ -54,7 +54,7 @@ func _process(delta):
 		setAnimState("Run")
 	
 	if state != "Attack" && state != "Attack2":
-		is_facing_left = velocity.x >= 0
+		is_facing_left = velocity.x > 0 && !(velocity.x < 0)
 
 	# AI STUFF
 	#velocity += processAI(list,delta)
