@@ -245,15 +245,17 @@ frame_progress = 0.387978
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5aviq")
 
-[node name="Attack" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 
-[node name="AttackCollision" type="CollisionShape2D" parent="Attack"]
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(1, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2l8j3")
 debug_color = Color(0.678431, 0.556863, 0.137255, 0.419608)
 
-[node name="DamageCollision" type="CollisionShape2D" parent="Attack"]
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="DamageCollision" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(2, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o2kl1")
@@ -261,3 +263,5 @@ disabled = true
 debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 
 [node name="AI" type="Node" parent="."]
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
