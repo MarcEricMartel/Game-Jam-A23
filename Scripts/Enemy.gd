@@ -41,6 +41,8 @@ func _process(delta):
 	# AI STUFF
 	#velocity = processAI(objects,velocity,delta)
 	
+	if !hitanim.is_emitting():
+		anim.modulate(Color(0,0,0,1))
 	
 	move_and_slide()
 	
@@ -88,6 +90,7 @@ func receive_damage(dmg):
 		pass
 	hp -= dmg
 	hitanim.restart()
+	anim.modulate(Color(0,0,0,.5))
 	if hp < 0:
 		velocity = Vector2(0,0)
 		setAnimState("Die")
