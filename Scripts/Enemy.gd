@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var cooldown: Node = get_node("Atk_cooldown")
 @onready var lvlanim: Node = get_node("LvlUp")
 @onready var lvlsnd: Node = get_node("LvlUpSnd")
+@onready var hitanim: Node = get_node("Hit")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -84,7 +85,10 @@ func setAnimState(newstate):
 	
 
 func receive_damage(dmg):
+	if hitanim.is_emitting():
+		pass
 	hp -= dmg
+	hitanim.restart()
 	if hp < 0:
 		velocity = Vector2(0,0)
 		setAnimState("Die")
@@ -97,6 +101,7 @@ func receive_exp(x):
 	if experience > levelup[level - 1] && level <= 8:
 		setLevel(level + 1)
 	
+
 
 func setLevel(lvl):
 	level = lvl
