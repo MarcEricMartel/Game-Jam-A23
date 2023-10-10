@@ -13,7 +13,9 @@ extends CharacterBody2D
 @export var experience: int = 0
 @export var state: String = "Idle"
 @export var damage: int = 5
+@export var maxAtks: int = 1
 
+@onready var currAtks: int = 0
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
 @onready var lvlanim: Node = get_node("LvlUp")
@@ -23,6 +25,18 @@ extends CharacterBody2D
 @onready var atk1r: Node = get_node("AttackArea/Attack1CollisionR")
 @onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
 @onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
+
+@onready var atkL: Node = atk1l
+@onready var atkR: Node = atk1r
+@onready var atk: String = "Attack"
+
+@onready var list: Array = []
+
+func add_foe(foe):
+	list.append(foe)
+
+func remove_foe(foe):
+	list.erase(foe)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,11 +50,17 @@ func _process(delta):
 	elif !is_attacking:
 		setAnimState("Run")
 	
-	is_facing_left = velocity.x >= 0
+	if state != "Attack" && state != "Attack2":
+		is_facing_left = velocity.x >= 0
 
 	# AI STUFF
-	#velocity = processAI(objects,velocity,delta)
+	#velocity += processAI(list,delta)
 	
+	velocity.x += delta * 4
+	velocity.y += delta * 4
+	
+	if !hitanim.is_emitting():
+		anim.modulate.a = 1
 	
 	move_and_slide()
 	
@@ -54,26 +74,33 @@ func processAI(objs, delta):
 
 func attack():
 	is_attacking = true
-	if (level > 1):
-		setAnimState("Attack2")
-		if is_facing_left:
-			atk2r.set_disabled(false)
-		else:
-			atk2l.set_disabled(false)
+	
+	setAnimState(atk)
+	if is_facing_left:
+		atkL.set_disabled(false)
 	else:
-		setAnimState("Attack")
-		if is_facing_left:
-			atk1r.set_disabled(false)
-		else:
-			atk1l.set_disabled(false)
+		atkR.set_disabled(false)
+	
+	#if (level > 3):
+#		setAnimState("Attack2")
+#		if is_facing_left:
+#			atk2r.set_disabled(false)
+#		else:
+#			atk2l.set_disabled(false)
+#	else:
+#		setAnimState("Attack")
+#		if is_facing_left:
+#			atk1r.set_disabled(false)
+#		else:
+#			atk1l.set_disabled(false)
 	
 
 func stop_attack():
 	is_attacking = false
-	atk1l.set_disabled(true)
-	atk1r.set_disabled(true)
-	atk2l.set_disabled(true)
-	atk2r.set_disabled(true)
+	atkL.set_disabled(true)
+	atkR.set_disabled(true)
+	#atk2l.set_disabled(true)
+	#atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
@@ -88,6 +115,7 @@ func receive_damage(dmg):
 		pass
 	hp -= dmg
 	hitanim.restart()
+	anim.modulate.a = 0.5
 	if hp < 0:
 		velocity = Vector2(0,0)
 		setAnimState("Die")
@@ -101,26 +129,49 @@ func receive_exp(x):
 		setLevel(level + 1)
 	
 
-
 func setLevel(lvl):
 	level = lvl
 	lvlanim.restart()
 	lvlsnd.play()
 	
-	if level > 2:
-		cooldown.wait_time = 0.5
+	if level > 3:
+		atk = "Attack2"
+		atkL = atk2l
+		atkR = atk2r
+		damage = 7
+		
+	if level > 4:
+		cooldown.wait_time = 1
+	
+	if level > 5:
+		damage = 12
+		
+	if level > 7:
+		maxAtks = 2
+	
+	maxhp += 5
+	hp += maxhp / 2
+	
+	if hp > maxhp:
+		hp = maxhp
 	
 
 func _on_atk_cooldown_timeout():
+	currAtks = maxAtks
 	attack()
 	
 
 func _on_sprite_animation_looped():
 	if is_attacking:
+		currAtks -= 1
 		stop_attack()
+		if currAtks > 0:
+			is_facing_left = !is_facing_left
+			attack()
+		else:
+			currAtks = maxAtks
 	is_dying = false
 	
-
 
 func _on_attack_area_body_entered(body):
 	if typeof(body) == typeof(TemplateSpawnable):
