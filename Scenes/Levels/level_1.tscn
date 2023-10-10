@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://uoyiei4wyig3"]
+[gd_scene load_steps=2 format=3 uid="uid://uoyiei4wyig3"]
+
+[ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="1_4n82n"]
 
 [node name="Level1" type="Node2D"]
+
+[node name="TileSet1" parent="." instance=ExtResource("1_4n82n")]
+
+[node name="Decor" type="Node2D" parent="."]

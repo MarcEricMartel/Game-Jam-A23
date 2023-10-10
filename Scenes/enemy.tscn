@@ -380,7 +380,7 @@ script = ExtResource("1_xj62t")
 sprite_frames = SubResource("SpriteFrames_dqf8u")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.93659
+frame_progress = 0.487368
 flip_h = true
 
 [node name="Atk_cooldown" type="Timer" parent="."]
@@ -405,6 +405,8 @@ radial_accel_curve = SubResource("Curve_22gv0")
 scale_amount_min = 0.01
 scale_amount_max = 0.01
 color = Color(1, 1, 1, 0.423529)
+
+[node name="LvlUpSnd" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CharacterCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_p2hkm")
