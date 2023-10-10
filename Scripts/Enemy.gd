@@ -40,6 +40,10 @@ func remove_foe(foe):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	atk1l.set_disabled(true)
+	atk1r.set_disabled(true)
+	atk2l.set_disabled(true)
+	atk2r.set_disabled(true)
 	pass # Replace with function body.
 	
 
