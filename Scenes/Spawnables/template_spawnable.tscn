@@ -257,6 +257,7 @@ debug_color = Color(0.678431, 0.556863, 0.137255, 0.419608)
 position = Vector2(2, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o2kl1")
+disabled = true
 debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 
 [node name="AI" type="Node" parent="."]
