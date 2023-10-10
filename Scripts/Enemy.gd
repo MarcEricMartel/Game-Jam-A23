@@ -58,9 +58,31 @@ func _process(delta):
 
 	# AI STUFF
 	#velocity += processAI(list,delta)
+	var x = 0
+	var y = 0
 	
-	velocity.x += delta * 4
-	velocity.y += delta * 4
+	if Input.is_action_pressed("ui_left"):
+		# Move as long as the key/button is pressed.
+		x -= delta * 50
+	elif Input.is_action_pressed("ui_right"):
+		# Move as long as the key/button is pressed.
+		x += delta * 50
+	else:
+		velocity.x *= 0.8
+	if Input.is_action_pressed("ui_up"):
+		# Move as long as the key/button is pressed.
+		y -= delta * 50
+	elif Input.is_action_pressed("ui_down"):
+		# Move as long as the key/button is pressed.
+		y += delta * 50
+	else:
+		velocity.y *= 0.8
+	
+	velocity.x += x
+	velocity.y += y
+	
+	
+	
 	
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
