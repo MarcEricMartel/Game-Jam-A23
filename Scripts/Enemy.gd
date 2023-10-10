@@ -44,7 +44,6 @@ func _ready():
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
 	atk2r.set_disabled(true)
-	pass # Replace with function body.
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -85,26 +84,11 @@ func attack():
 	else:
 		atkR.set_disabled(false)
 	
-	#if (level > 3):
-#		setAnimState("Attack2")
-#		if is_facing_left:
-#			atk2r.set_disabled(false)
-#		else:
-#			atk2l.set_disabled(false)
-#	else:
-#		setAnimState("Attack")
-#		if is_facing_left:
-#			atk1r.set_disabled(false)
-#		else:
-#			atk1l.set_disabled(false)
-	
 
 func stop_attack():
 	is_attacking = false
 	atkL.set_disabled(true)
 	atkR.set_disabled(true)
-	#atk2l.set_disabled(true)
-	#atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
