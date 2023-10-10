@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var maxvel: float = 2
 @export var experience: int = 0
 @export var state: String = "Idle"
+@export var damage: int = 5
 
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
@@ -35,14 +36,8 @@ func _process(delta):
 	# AI STUFF
 	#velocity = processAI(objects,velocity,delta)
 	
-	velocity.x += delta
-	velocity.y += delta
 	
-	if abs(velocity.x + velocity.y) > maxvel:
-		velocity.x *= maxvel / velocity.x
-		velocity.y *= maxvel / velocity.y
-	
-	position += velocity
+	move_and_slide()
 	
 
 func processAI(objs, delta):
@@ -116,3 +111,8 @@ func _on_sprite_animation_looped():
 		stop_attack()
 	is_dying = false
 	
+
+
+func _on_attack_area_body_entered(body):
+	if typeof(body) == typeof(TemplateSpawnable):
+		body.receive_damage(damage)

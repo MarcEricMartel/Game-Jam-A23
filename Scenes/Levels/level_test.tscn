@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://vd3ffjat2jln"]
+
+[ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="1_287nl"]
+[ext_resource type="PackedScene" uid="uid://b5lnjonlf4i1b" path="res://Scenes/enemy.tscn" id="2_ftshv"]
+[ext_resource type="PackedScene" uid="uid://brnx3xyyd0e71" path="res://Scenes/Spawnables/bat_spawnable.tscn" id="3_a1ucf"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="TileSet1" parent="." instance=ExtResource("1_287nl")]
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("2_ftshv")]
+position = Vector2(998, 507)
+
+[node name="BatSpawnable" parent="." instance=ExtResource("3_a1ucf")]
+position = Vector2(805, 420)
+
+[node name="BatSpawnable2" parent="." instance=ExtResource("3_a1ucf")]
+position = Vector2(1201, 446)

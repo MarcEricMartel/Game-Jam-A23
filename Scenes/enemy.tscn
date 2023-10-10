@@ -445,3 +445,4 @@ debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="timeout" from="Atk_cooldown" to="." method="_on_atk_cooldown_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

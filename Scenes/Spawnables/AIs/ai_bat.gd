@@ -1,4 +1,4 @@
 extends AITemplate
 
 func getDirection(position, enemyPosition) -> Vector2:
-	return Vector2.ZERO
+	return Vector2(enemyPosition - position).normalized()
