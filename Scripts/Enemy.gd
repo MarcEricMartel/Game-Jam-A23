@@ -97,11 +97,13 @@ func processAI(objs):
 	var vec: Vector2 = Vector2(0,0)
 	var weight: int = 0
 	for obj in objs:
+		if !obj || !obj.isAlive:
+			continue
 		if position.distance_to(obj.position) > 10:
 			weight = abs(obj.priority) * position.distance_to(obj.position)
 			vec += weight * position.direction_to(obj.position)
 		else:
-			weight = obj.priority * position.distance_to(obj.position) * (maxhp / hp) * 100
+			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp)
 			vec += weight * -position.direction_to(obj.position)
 	
 	if vec.length() < 5 && objs.size() > 1:
