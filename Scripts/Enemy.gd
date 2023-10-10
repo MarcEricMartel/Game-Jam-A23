@@ -9,12 +9,14 @@ extends CharacterBody2D
 @export var level: int = 1
 @export var hp: int = 100
 @export var maxhp: int = 100
+@export var maxvel: float = 2
 @export var experience: int = 0
 @export var state: String = "Idle"
 
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
 @onready var lvlanim: Node = get_node("LvlUp")
+@onready var lvlsnd: Node = get_node("LvlUpSnd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,10 +33,23 @@ func _process(delta):
 	is_facing_left = velocity.x >= 0
 
 	# AI STUFF
+	#velocity = processAI(objects,velocity,delta)
+	
 	velocity.x += delta
 	velocity.y += delta
 	
+	if abs(velocity.x + velocity.y) > maxvel:
+		velocity.x *= maxvel / velocity.x
+		velocity.y *= maxvel / velocity.y
+	
 	position += velocity
+	
+
+func processAI(objs, delta):
+	var vec: Vector2 = Vector2(0,0)
+	for obj in objs:
+		vec += obj.vecpos * obj.weight * (1 / (position - obj.vecpos)) * delta
+	return vec.normalized()
 	
 
 func attack():
@@ -86,6 +101,7 @@ func receive_exp(x):
 func setLevel(lvl):
 	level = lvl
 	lvlanim.restart()
+	lvlsnd.play()
 	
 	if level > 2:
 		cooldown.wait_time = 0.5
@@ -99,3 +115,4 @@ func _on_sprite_animation_looped():
 	if is_attacking:
 		stop_attack()
 	is_dying = false
+	
