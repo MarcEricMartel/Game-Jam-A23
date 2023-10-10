@@ -16,10 +16,10 @@ script = ExtResource("1_dgae7")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 94.0
-offset_right = 922.0
-offset_bottom = 388.0
+offset_left = 260.0
+offset_top = 95.0
+offset_right = 910.0
+offset_bottom = 389.0
 text = "UNTITLED GAME
 THAT MAY BE 
 ABOUT A MONSTER"
@@ -38,7 +38,7 @@ text = "Start"
 layout_mode = 0
 offset_left = 570.0
 offset_top = 442.0
-offset_right = 714.0
+offset_right = 705.0
 offset_bottom = 489.0
 text = "Quit
 "
