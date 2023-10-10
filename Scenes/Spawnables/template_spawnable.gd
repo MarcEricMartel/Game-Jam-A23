@@ -1,17 +1,21 @@
 class_name TemplateSpawnable
 extends CharacterBody2D
 
+const ATTACK_COOLDOWN : float = 100
+
 @export var maxHp : int = 0
 @export var attackSpeed : float = 0
 @export var speed : float = 0
 @export var damage : int = 0
 @export var priority : int = 0
+@export var cost : int = 0
+@export var minSpawnRange : float = 0
 @export var canAttack : bool = true
 
 @onready var ai : Node = $AI
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var attackCollision : CollisionShape2D = $Attack/AttackCollision
-@onready var damageCollision : CollisionShape2D = $Attack/DamageCollision
+@onready var attackArea : Area2D = $AttackArea
+@onready var damageCollision : CollisionShape2D = $DamageArea/DamageCollision
 
 var isAlive : bool = true
 var isFacingLeft : bool = false
@@ -29,30 +33,44 @@ func _ready():
 func _process(delta):
 	if !isAlive:
 		return
-		
+	
 	if enemy != null:
 		direction = ai.getDirection(global_position, enemy.global_position)
 	else:
 		direction = Vector2.ZERO
 	
-	if !isFacingLeft && velocity.x >= 0:
+	if !isFacingLeft && direction.x < 0:
 		isFacingLeft = true
-		scale = Vector2(1, 1)
-	elif isFacingLeft && velocity.x < 0:
-		isFacingLeft = false
 		scale = Vector2(-1, 1)
+	elif isFacingLeft && direction.x > 0:
+		isFacingLeft = false
+		scale = Vector2(1, 1)
 		
 	velocity = direction * speed * delta
 	move_and_slide()
+	
+	if cooldown > 0:
+		if cooldown - attackSpeed * delta <= 0:
+			cooldown = 0
+		else:
+			cooldown -= attackSpeed * delta
+			
+	attemptAttack()
+
+func attemptAttack():
+	if !canAttack || !isAlive || cooldown > 0:
+		return
+	if attackArea.overlaps_body(enemy):
+		attack()
 
 func attack():
-	if !canAttack || !isAlive:
-		return
+	cooldown = ATTACK_COOLDOWN
 	animatedSprite.play("attack")
+	damageCollision.disabled = false
 	animatedSprite.connect("animation_finished", endAttack)
 
 func endAttack():
-	
+	damageCollision.disabled = true
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
@@ -67,7 +85,10 @@ func receive_damage(dmg):
 
 func die():
 	isAlive = false
+	damageCollision.disabled = true
+	animatedSprite.stop()
 	animatedSprite.play("death")
+	animatedSprite.disconnect("animation_finished", endAttack)
 	animatedSprite.connect("animation_finished", fadeOut)
 	
 func fadeOut():
@@ -78,3 +99,8 @@ func fadeOut():
 
 func clean():
 	queue_free()
+
+
+func _on_damage_area_body_entered(body):
+	if body == enemy:
+		enemy.receive_damage(damage)
