@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var is_attacking: bool = false
 @onready var is_dying: bool = false
 
-@export var level: int = 7
+@export var level: int = 1
 @export var hp: int = 100
 @export var maxhp: int = 100
 @export var maxvel: float = 2
@@ -52,8 +52,8 @@ func _process(delta):
 	# AI STUFF
 	#velocity += processAI(list,delta)
 	
-	velocity.x += delta
-	velocity.y += delta
+	velocity.x += delta * 4
+	velocity.y += delta * 4
 	
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
@@ -70,7 +70,7 @@ func processAI(objs, delta):
 
 func attack():
 	is_attacking = true
-	if (level > 1):
+	if (level > 3):
 		setAnimState("Attack2")
 		if is_facing_left:
 			atk2r.set_disabled(false)
@@ -133,7 +133,10 @@ func setLevel(lvl):
 		maxAtks = 2
 	
 	maxhp += 5
-	hp = maxhp
+	hp += maxhp / 2
+	
+	if hp > maxhp:
+		hp = maxhp
 	
 
 func _on_atk_cooldown_timeout():
@@ -148,6 +151,8 @@ func _on_sprite_animation_looped():
 		if currAtks > 0:
 			is_facing_left = !is_facing_left
 			attack()
+		else:
+			currAtks = maxAtks
 	is_dying = false
 	
 
