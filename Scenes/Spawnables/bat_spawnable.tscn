@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brnx3xyyd0e71"]
+
+[ext_resource type="PackedScene" uid="uid://kkfxguj0lr5a" path="res://Scenes/Spawnables/template_spawnable.tscn" id="1_verf7"]
+[ext_resource type="Script" path="res://Scenes/Spawnables/AIs/ai_bat.gd" id="2_x3ldf"]
+
+[node name="BatSpawnable" instance=ExtResource("1_verf7")]
+maxHp = 10
+attackSpeed = 10.0
+speed = 100.0
+damage = 1
+priority = 1
+
+[node name="AI" parent="." index="3"]
+script = ExtResource("2_x3ldf")
