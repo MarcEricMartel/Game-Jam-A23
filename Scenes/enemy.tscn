@@ -432,7 +432,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Attack1CollisionR" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(3, -7)
 rotation = 1.5708
 skew = 0.223402
@@ -440,7 +439,6 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack1CollisionL" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(-3, -7)
 rotation = 1.5708
 skew = -0.169297
@@ -448,7 +446,6 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack2CollisionR" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(25, -7)
 rotation = 1.5708
 skew = 0.0837758
@@ -456,7 +453,6 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack2CollisionL" type="CollisionShape2D" parent="AttackArea"]
-visible = false
 position = Vector2(-25, -7)
 rotation = 1.5708
 skew = -0.0837758
