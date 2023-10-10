@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cf7al5uln33rn"]
+
+[ext_resource type="Texture2D" uid="uid://phrnbrk3bl0g" path="res://Assets/RF_Catacombs_v1.0/candleB_01.png" id="1_r5efy"]
+[ext_resource type="Texture2D" uid="uid://dbyoqh34wf5ix" path="res://Assets/RF_Catacombs_v1.0/candleB_02.png" id="2_lpcc8"]
+[ext_resource type="Texture2D" uid="uid://bluucopg1uude" path="res://Assets/RF_Catacombs_v1.0/candleB_03.png" id="3_cfvnv"]
+[ext_resource type="Texture2D" uid="uid://bvgwpukrjl7k6" path="res://Assets/RF_Catacombs_v1.0/candleB_04.png" id="4_expwi"]
+[ext_resource type="Material" uid="uid://id4bl5ph4sbj" path="res://candle_part_material.tres" id="5_s1888"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdrfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r5efy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lpcc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cfvnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_expwi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_sm8o0"]
+offsets = PackedFloat32Array(0, 0.736573)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mton1"]
+gradient = SubResource("Gradient_sm8o0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Candle" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 0)
+rotation = -3.14159
+scale = Vector2(1.14286, 1.10476)
+sprite_frames = SubResource("SpriteFrames_mdrfm")
+centered = false
+offset = Vector2(-3.5, -7)
+flip_v = true
+
+[node name="Particles2D1" type="GPUParticles2D" parent="."]
+position = Vector2(-4, 0)
+process_material = ExtResource("5_s1888")
+preprocess = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="Particles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(4, -4)
+process_material = ExtResource("5_s1888")
+preprocess = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.698039, 0.2, 1)
+texture = SubResource("GradientTexture2D_mton1")
+texture_scale = 2.5

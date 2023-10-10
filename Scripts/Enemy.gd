@@ -44,7 +44,6 @@ func _ready():
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
 	atk2r.set_disabled(true)
-	pass # Replace with function body.
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,13 +54,35 @@ func _process(delta):
 		setAnimState("Run")
 	
 	if state != "Attack" && state != "Attack2":
-		is_facing_left = velocity.x >= 0
+		is_facing_left = velocity.x > 0 && !(velocity.x < 0)
 
 	# AI STUFF
 	#velocity += processAI(list,delta)
+	var x = 0
+	var y = 0
 	
-	velocity.x += delta * 4
-	velocity.y += delta * 4
+	if Input.is_action_pressed("ui_left"):
+		# Move as long as the key/button is pressed.
+		x -= delta * 50
+	elif Input.is_action_pressed("ui_right"):
+		# Move as long as the key/button is pressed.
+		x += delta * 50
+	else:
+		velocity.x *= 0.8
+	if Input.is_action_pressed("ui_up"):
+		# Move as long as the key/button is pressed.
+		y -= delta * 50
+	elif Input.is_action_pressed("ui_down"):
+		# Move as long as the key/button is pressed.
+		y += delta * 50
+	else:
+		velocity.y *= 0.8
+	
+	velocity.x += x
+	velocity.y += y
+	
+	
+	
 	
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
@@ -85,26 +106,11 @@ func attack():
 	else:
 		atkR.set_disabled(false)
 	
-	#if (level > 3):
-#		setAnimState("Attack2")
-#		if is_facing_left:
-#			atk2r.set_disabled(false)
-#		else:
-#			atk2l.set_disabled(false)
-#	else:
-#		setAnimState("Attack")
-#		if is_facing_left:
-#			atk1r.set_disabled(false)
-#		else:
-#			atk1l.set_disabled(false)
-	
 
 func stop_attack():
 	is_attacking = false
 	atkL.set_disabled(true)
 	atkR.set_disabled(true)
-	#atk2l.set_disabled(true)
-	#atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
