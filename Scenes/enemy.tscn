@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5lnjonlf4i1b"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_xj62t"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_s1wwp"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_xj62t")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("ImageTexture_s1wwp")
+
+[node name="Atk_cooldown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Atk_cooldown" to="." method="_on_atk_cooldown_timeout"]
