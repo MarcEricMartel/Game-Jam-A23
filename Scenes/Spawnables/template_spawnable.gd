@@ -18,6 +18,8 @@ const ATTACK_COOLDOWN : float = 100
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var attackArea : Area2D = $AttackArea
 @onready var damageCollision : CollisionShape2D = $DamageArea/DamageCollision
+@onready var bodyCollision : CollisionShape2D = $BodyCollision
+@onready var spawnableUI : Control = $UIContainer/SpawnableUI
 
 var isAlive : bool = true
 var isFacingLeft : bool = false
@@ -30,6 +32,8 @@ var cooldown : float = 0
 func _ready():
 	enemy = get_node("../Enemy")
 	currentHp = maxHp
+	spawnableUI.setHP(currentHp, maxHp)
+	spawnableUI.visible = true
 	animatedSprite.play("default")
 
 func _process(delta):
@@ -43,12 +47,14 @@ func _process(delta):
 	
 	if !isFacingLeft && direction.x < 0:
 		isFacingLeft = true
-		scale.x = -1
-		scale.y = 1
+		attackArea.scale = Vector2(-1,1)
+		damageCollision.scale = Vector2(-1,1)
+		animatedSprite.flip_h = isFacingLeft
 	elif isFacingLeft && direction.x > 0:
 		isFacingLeft = false
-		scale.x = -1
-		scale.y = -1
+		attackArea.scale = Vector2(1,1)
+		damageCollision.scale = Vector2(1,1)
+		animatedSprite.flip_h = isFacingLeft
 		
 	velocity = direction * speed * delta
 	move_and_slide()
@@ -83,13 +89,16 @@ func receive_damage(dmg):
 	
 	if currentHp - dmg <= 0:
 		currentHp = 0
-		die()
+		call_deferred("die")
 	else :
 		currentHp -= dmg
+	spawnableUI.setHP(currentHp, maxHp)
 
 func die():
-	isAlive = false
+	bodyCollision.disabled = true
 	damageCollision.disabled = true
+	spawnableUI.visible = false
+	isAlive = false
 	animatedSprite.stop()
 	animatedSprite.play("death")
 	animatedSprite.disconnect("animation_finished", endAttack)
