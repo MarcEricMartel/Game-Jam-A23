@@ -14,7 +14,7 @@
 position = Vector2(441, 312)
 
 [node name="BatSpawnable" parent="." instance=ExtResource("3_a1ucf")]
-position = Vector2(248, 225)
+position = Vector2(62, 122)
 
 [node name="BatSpawnable2" parent="." instance=ExtResource("3_a1ucf")]
 position = Vector2(644, 251)

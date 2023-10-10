@@ -90,6 +90,7 @@ func die():
 	animatedSprite.play("death")
 	animatedSprite.disconnect("animation_finished", endAttack)
 	animatedSprite.connect("animation_finished", fadeOut)
+	enemy.remove_foe(self)
 	
 func fadeOut():
 	var tween = get_tree().create_tween()
