@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://kkfxguj0lr5a"]
+[gd_scene load_steps=37 format=3 uid="uid://kkfxguj0lr5a"]
 
 [ext_resource type="Script" path="res://Scenes/Spawnables/template_spawnable.gd" id="1_rkej7"]
 [ext_resource type="Texture2D" uid="uid://f60ndepwmpj2" path="res://Assets/Bat/noBKG_BatAttack_strip.png" id="2_7ayi7"]
@@ -225,7 +225,10 @@ height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2l8j3"]
 radius = 7.0
-height = 22.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2kl1"]
+radius = 8.0
 
 [node name="TemplateSpawnable" type="CharacterBody2D"]
 collision_layer = 6
@@ -234,6 +237,9 @@ script = ExtResource("1_rkej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k6v1d")
+animation = &"attack"
+frame = 7
+frame_progress = 0.387978
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -242,8 +248,16 @@ shape = SubResource("CapsuleShape2D_5aviq")
 [node name="Attack" type="Area2D" parent="."]
 
 [node name="AttackCollision" type="CollisionShape2D" parent="Attack"]
+position = Vector2(1, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2l8j3")
-debug_color = Color(0.803922, 0, 0.180392, 0.419608)
+debug_color = Color(0.678431, 0.556863, 0.137255, 0.419608)
+
+[node name="DamageCollision" type="CollisionShape2D" parent="Attack"]
+position = Vector2(2, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_o2kl1")
+disabled = true
+debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 
 [node name="AI" type="Node" parent="."]

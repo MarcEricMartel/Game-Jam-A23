@@ -12,11 +12,17 @@ extends CharacterBody2D
 @export var maxvel: float = 2
 @export var experience: int = 0
 @export var state: String = "Idle"
+@export var damage: int = 5
 
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
 @onready var lvlanim: Node = get_node("LvlUp")
 @onready var lvlsnd: Node = get_node("LvlUpSnd")
+@onready var hitanim: Node = get_node("Hit")
+@onready var atk1l: Node = get_node("AttackArea/Attack1CollisionL")
+@onready var atk1r: Node = get_node("AttackArea/Attack1CollisionR")
+@onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
+@onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,14 +41,8 @@ func _process(delta):
 	# AI STUFF
 	#velocity = processAI(objects,velocity,delta)
 	
-	velocity.x += delta
-	velocity.y += delta
 	
-	if abs(velocity.x + velocity.y) > maxvel:
-		velocity.x *= maxvel / velocity.x
-		velocity.y *= maxvel / velocity.y
-	
-	position += velocity
+	move_and_slide()
 	
 
 func processAI(objs, delta):
@@ -57,23 +57,23 @@ func attack():
 	if (level > 1):
 		setAnimState("Attack2")
 		if is_facing_left:
-			get_node("AttackArea/Attack2CollisionL").set_disabled(false)
+			atk2r.set_disabled(false)
 		else:
-			get_node("AttackArea/Attack2CollisionR").set_disabled(false)
+			atk2l.set_disabled(false)
 	else:
 		setAnimState("Attack")
 		if is_facing_left:
-			get_node("AttackArea/Attack1CollisionL").set_disabled(false)
+			atk1r.set_disabled(false)
 		else:
-			get_node("AttackArea/Attack1CollisionR").set_disabled(false)
+			atk1l.set_disabled(false)
 	
 
 func stop_attack():
 	is_attacking = false
-	get_node("AttackArea/Attack1CollisionL").set_disabled(true)
-	get_node("AttackArea/Attack1CollisionR").set_disabled(true)
-	get_node("AttackArea/Attack2CollisionL").set_disabled(true)
-	get_node("AttackArea/Attack2CollisionR").set_disabled(true)
+	atk1l.set_disabled(true)
+	atk1r.set_disabled(true)
+	atk2l.set_disabled(true)
+	atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
@@ -84,7 +84,10 @@ func setAnimState(newstate):
 	
 
 func receive_damage(dmg):
+	if hitanim.is_emitting():
+		pass
 	hp -= dmg
+	hitanim.restart()
 	if hp < 0:
 		velocity = Vector2(0,0)
 		setAnimState("Die")
@@ -97,6 +100,7 @@ func receive_exp(x):
 	if experience > levelup[level - 1] && level <= 8:
 		setLevel(level + 1)
 	
+
 
 func setLevel(lvl):
 	level = lvl
@@ -116,3 +120,8 @@ func _on_sprite_animation_looped():
 		stop_attack()
 	is_dying = false
 	
+
+
+func _on_attack_area_body_entered(body):
+	if typeof(body) == typeof(TemplateSpawnable):
+		body.receive_damage(damage)
