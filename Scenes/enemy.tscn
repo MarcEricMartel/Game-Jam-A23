@@ -377,7 +377,6 @@ radius = 16.0
 height = 72.0
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(10, 10)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xj62t")
@@ -392,6 +391,7 @@ flip_h = true
 autostart = true
 
 [node name="LvlUp" type="CPUParticles2D" parent="."]
+modulate = Color(0.701961, 0.6, 0.133333, 1)
 emitting = false
 amount = 14
 one_shot = true
