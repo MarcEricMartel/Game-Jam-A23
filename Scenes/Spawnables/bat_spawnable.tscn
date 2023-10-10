@@ -10,5 +10,8 @@ speed = 100.0
 damage = 1
 priority = 1
 
+[node name="AnimatedSprite2D" parent="." index="0"]
+frame_progress = 0.482614
+
 [node name="AI" parent="." index="3"]
 script = ExtResource("2_x3ldf")

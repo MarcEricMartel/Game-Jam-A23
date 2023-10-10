@@ -20,6 +20,7 @@ var cooldown : float = 0
 func _ready():
 	enemy = get_node("../Enemy")
 	currentHp = maxHp
+	animatedSprite.play("default")
 
 func _process(delta):
 	if !isAlive:

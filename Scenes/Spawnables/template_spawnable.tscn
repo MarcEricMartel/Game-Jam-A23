@@ -150,7 +150,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bxitd")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
 "speed": 12.0
 }, {
@@ -185,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7bunh")
 }],
-"loop": false,
+"loop": true,
 "name": &"death",
 "speed": 12.0
 }, {
@@ -234,6 +234,7 @@ script = ExtResource("1_rkej7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k6v1d")
+frame_progress = 0.107531
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
