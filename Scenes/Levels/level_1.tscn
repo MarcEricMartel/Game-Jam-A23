@@ -1,9 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://uoyiei4wyig3"]
+[gd_scene load_steps=4 format=3 uid="uid://uoyiei4wyig3"]
 
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="1_4n82n"]
+[ext_resource type="PackedScene" uid="uid://dgtscjxcqoxls" path="res://Scenes/Props/candle_1.tscn" id="2_5hdq4"]
+[ext_resource type="PackedScene" uid="uid://cf7al5uln33rn" path="res://Scenes/Props/candle_2.tscn" id="2_o33c4"]
 
 [node name="Level1" type="Node2D"]
 
 [node name="TileSet1" parent="." instance=ExtResource("1_4n82n")]
 
 [node name="Decor" type="Node2D" parent="."]
+
+[node name="Candles" parent="Decor" instance=ExtResource("2_o33c4")]
+position = Vector2(160, 416)
+
+[node name="Candles2" parent="Decor" instance=ExtResource("2_o33c4")]
+position = Vector2(160, 160)
+
+[node name="Candles3" parent="Decor" instance=ExtResource("2_o33c4")]
+position = Vector2(797.153, 158.518)
+
+[node name="Candles4" parent="Decor" instance=ExtResource("2_o33c4")]
+position = Vector2(800.365, 417.055)
+
+[node name="Candle" parent="Decor" instance=ExtResource("2_5hdq4")]
+position = Vector2(432, 256)
+
+[node name="Candle2" parent="Decor" instance=ExtResource("2_5hdq4")]
+position = Vector2(432, 352)
+
+[node name="Candle3" parent="Decor" instance=ExtResource("2_5hdq4")]
+position = Vector2(528, 256)
+
+[node name="Candle4" parent="Decor" instance=ExtResource("2_5hdq4")]
+position = Vector2(528, 352)
