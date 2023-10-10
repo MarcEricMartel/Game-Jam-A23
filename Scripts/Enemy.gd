@@ -24,6 +24,14 @@ extends CharacterBody2D
 @onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
 @onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
 
+@onready var list: Array = []
+
+func add_foe(foe):
+	list.append(foe)
+
+func remove_foe(foe):
+	list.erase(foe)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -39,7 +47,7 @@ func _process(delta):
 	is_facing_left = velocity.x >= 0
 
 	# AI STUFF
-	#velocity = processAI(objects,velocity,delta)
+	velocity = processAI(list,delta)
 	
 	if !hitanim.is_emitting():
 		anim.modulate(Color(0,0,0,1))
@@ -104,7 +112,6 @@ func receive_exp(x):
 		setLevel(level + 1)
 	
 
-
 func setLevel(lvl):
 	level = lvl
 	lvlanim.restart()
@@ -123,7 +130,6 @@ func _on_sprite_animation_looped():
 		stop_attack()
 	is_dying = false
 	
-
 
 func _on_attack_area_body_entered(body):
 	if typeof(body) == typeof(TemplateSpawnable):
