@@ -18,6 +18,10 @@ extends CharacterBody2D
 @onready var lvlanim: Node = get_node("LvlUp")
 @onready var lvlsnd: Node = get_node("LvlUpSnd")
 @onready var hitanim: Node = get_node("Hit")
+@onready var atk1l: Node = get_node("AttackArea/Attack1CollisionL")
+@onready var atk1r: Node = get_node("AttackArea/Attack1CollisionR")
+@onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
+@onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,15 +62,15 @@ func attack():
 	if (level > 1):
 		setAnimState("Attack2")
 		if is_facing_left:
-			get_node("AttackArea/Attack2CollisionL").set_disabled(false)
+			atk2l.set_disabled(false)
 		else:
-			get_node("AttackArea/Attack2CollisionR").set_disabled(false)
+			atk2r.set_disabled(false)
 	else:
 		setAnimState("Attack")
 		if is_facing_left:
-			get_node("AttackArea/Attack1CollisionL").set_disabled(false)
+			atk1l.set_disabled(false)
 		else:
-			get_node("AttackArea/Attack1CollisionR").set_disabled(false)
+			atk1r.set_disabled(false)
 	
 
 func stop_attack():
