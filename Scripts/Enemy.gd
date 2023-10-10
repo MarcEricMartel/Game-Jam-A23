@@ -26,6 +26,10 @@ extends CharacterBody2D
 @onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
 @onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
 
+@onready var atkL: Node = atk1l
+@onready var atkR: Node = atk1r
+@onready var atk: String = "Attack"
+
 @onready var list: Array = []
 
 func add_foe(foe):
@@ -70,26 +74,33 @@ func processAI(objs, delta):
 
 func attack():
 	is_attacking = true
-	if (level > 3):
-		setAnimState("Attack2")
-		if is_facing_left:
-			atk2r.set_disabled(false)
-		else:
-			atk2l.set_disabled(false)
+	
+	setAnimState(atk)
+	if is_facing_left:
+		atkL.set_disabled(false)
 	else:
-		setAnimState("Attack")
-		if is_facing_left:
-			atk1r.set_disabled(false)
-		else:
-			atk1l.set_disabled(false)
+		atkR.set_disabled(false)
+	
+	#if (level > 3):
+#		setAnimState("Attack2")
+#		if is_facing_left:
+#			atk2r.set_disabled(false)
+#		else:
+#			atk2l.set_disabled(false)
+#	else:
+#		setAnimState("Attack")
+#		if is_facing_left:
+#			atk1r.set_disabled(false)
+#		else:
+#			atk1l.set_disabled(false)
 	
 
 func stop_attack():
 	is_attacking = false
-	atk1l.set_disabled(true)
-	atk1r.set_disabled(true)
-	atk2l.set_disabled(true)
-	atk2r.set_disabled(true)
+	atkL.set_disabled(true)
+	atkR.set_disabled(true)
+	#atk2l.set_disabled(true)
+	#atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
@@ -123,9 +134,15 @@ func setLevel(lvl):
 	lvlanim.restart()
 	lvlsnd.play()
 	
-	if level > 2:
-		cooldown.wait_time = 1
+	if level > 3:
+		atk = "Attack2"
+		atkL = atk2l
+		atkR = atk2r
+		damage = 7
 		
+	if level > 4:
+		cooldown.wait_time = 1
+	
 	if level > 5:
 		damage = 12
 		
