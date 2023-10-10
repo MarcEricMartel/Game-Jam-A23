@@ -383,6 +383,21 @@ autoplay = "Idle"
 frame_progress = 0.487368
 flip_h = true
 
+[node name="Hit" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.75
+randomness = 0.72
+emission_shape = 1
+emission_sphere_radius = 5.53
+initial_velocity_min = 12.0
+initial_velocity_max = 12.0
+angular_velocity_min = 50.0
+angular_velocity_max = 50.0
+color = Color(0.623529, 0, 0, 0.729412)
+
 [node name="Atk_cooldown" type="Timer" parent="."]
 autostart = true
 
@@ -416,6 +431,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Attack1CollisionR" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(3, -7)
 rotation = 1.5708
 skew = 0.223402
@@ -423,6 +439,7 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack1CollisionL" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(-3, -7)
 rotation = 1.5708
 skew = -0.169297
@@ -430,6 +447,7 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack2CollisionR" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(25, -7)
 rotation = 1.5708
 skew = 0.0837758
@@ -437,6 +455,7 @@ shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
 [node name="Attack2CollisionL" type="CollisionShape2D" parent="AttackArea"]
+visible = false
 position = Vector2(-25, -7)
 rotation = 1.5708
 skew = -0.0837758
