@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 @onready var ai : Node = $AI
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var attackCollision : CollisionShape2D = $Attack/AttackCollision
+@onready var damageCollision : CollisionShape2D = $Attack/DamageCollision
 
 var isAlive : bool = true
 var isFacingLeft : bool = false
