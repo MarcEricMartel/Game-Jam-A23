@@ -6,14 +6,16 @@ extends CharacterBody2D
 @onready var is_attacking: bool = false
 @onready var is_dying: bool = false
 
-@export var level: int = 1
+@export var level: int = 7
 @export var hp: int = 100
 @export var maxhp: int = 100
 @export var maxvel: float = 2
 @export var experience: int = 0
 @export var state: String = "Idle"
 @export var damage: int = 5
+@export var maxAtks: int = 1
 
+@onready var currAtks: int = 0
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
 @onready var lvlanim: Node = get_node("LvlUp")
@@ -47,10 +49,13 @@ func _process(delta):
 	is_facing_left = velocity.x >= 0
 
 	# AI STUFF
-	velocity = processAI(list,delta)
+	#velocity = processAI(list,delta)
+	
+	velocity.x += delta
+	velocity.y += delta
 	
 	if !hitanim.is_emitting():
-		anim.modulate(Color(0,0,0,1))
+		anim.modulate.a = 1
 	
 	move_and_slide()
 	
@@ -98,7 +103,7 @@ func receive_damage(dmg):
 		pass
 	hp -= dmg
 	hitanim.restart()
-	anim.modulate(Color(0,0,0,.5))
+	anim.modulate.a = 0.5
 	if hp < 0:
 		velocity = Vector2(0,0)
 		setAnimState("Die")
@@ -118,16 +123,30 @@ func setLevel(lvl):
 	lvlsnd.play()
 	
 	if level > 2:
-		cooldown.wait_time = 0.5
+		cooldown.wait_time = 1
+		
+	if level > 5:
+		damage = 12
+		
+	if level > 7:
+		maxAtks = 2
+	
+	maxhp += 5
+	hp = maxhp
 	
 
 func _on_atk_cooldown_timeout():
+	currAtks = maxAtks
 	attack()
 	
 
 func _on_sprite_animation_looped():
 	if is_attacking:
+		currAtks -= 1
 		stop_attack()
+		if currAtks > 0:
+			is_facing_left = !is_facing_left
+			attack()
 	is_dying = false
 	
 

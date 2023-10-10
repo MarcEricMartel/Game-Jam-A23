@@ -399,6 +399,7 @@ angular_velocity_max = 50.0
 color = Color(0.623529, 0, 0, 0.729412)
 
 [node name="Atk_cooldown" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="LvlUp" type="CPUParticles2D" parent="."]
