@@ -44,11 +44,13 @@ func _ready():
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
 	atk2r.set_disabled(true)
+	list.append($"../BatSpawnable")
+	list.append($"../BatSpawnable2")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if abs(velocity.x) < 0.1 && abs(velocity.y) < 0.1 && !is_attacking:
+	if abs(velocity.x) < 0.2 && abs(velocity.y) < 0.2 && !is_attacking:
 		setAnimState("Idle")
 	elif !is_attacking:
 		setAnimState("Run")
@@ -57,32 +59,33 @@ func _process(delta):
 		is_facing_left = velocity.x > 0 && !(velocity.x < 0)
 
 	# AI STUFF
-	#velocity += processAI(list,delta)
-	var x = 0
-	var y = 0
+	velocity += processAI(list) * delta
+	#var x = 0
+	#var y = 0
 	
-	if Input.is_action_pressed("ui_left"):
+	#if Input.is_action_pressed("ui_left"):
+	#	# Move as long as the key/button is pressed.
+	#	x -= delta * 50
+	#elif Input.is_action_pressed("ui_right"):
+	#	# Move as long as the key/button is pressed.
+	#	x += delta * 50
+	#else:
+	#	velocity.x *= 0.8
+	#if Input.is_action_pressed("ui_up"):
 		# Move as long as the key/button is pressed.
-		x -= delta * 50
-	elif Input.is_action_pressed("ui_right"):
+	#	y -= delta * 50
+	#elif Input.is_action_pressed("ui_down"):
 		# Move as long as the key/button is pressed.
-		x += delta * 50
-	else:
-		velocity.x *= 0.8
-	if Input.is_action_pressed("ui_up"):
-		# Move as long as the key/button is pressed.
-		y -= delta * 50
-	elif Input.is_action_pressed("ui_down"):
-		# Move as long as the key/button is pressed.
-		y += delta * 50
-	else:
-		velocity.y *= 0.8
-	
-	velocity.x += x
-	velocity.y += y
-	
-	
-	
+	#	y += delta * 50
+	#else:
+	#	velocity.y *= 0.8
+	while velocity.length() > 100:
+		velocity.x *= 0.99
+		velocity.y *= 0.99
+	velocity.x *= 0.99
+	velocity.y *= 0.99
+	#velocity.x += x
+	#velocity.y += y
 	
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
@@ -90,11 +93,27 @@ func _process(delta):
 	move_and_slide()
 	
 
-func processAI(objs, delta):
+func processAI(objs):
 	var vec: Vector2 = Vector2(0,0)
+	var weight: int = 0
 	for obj in objs:
-		vec += obj.vecpos * obj.weight * (1 / (position - obj.vecpos)) * delta
-	return vec.normalized()
+		if !obj || !obj.isAlive:
+			continue
+		if position.distance_to(obj.position) > 10:
+			weight = abs(obj.priority) * position.distance_to(obj.position)
+			vec += weight * position.direction_to(obj.position)
+		else:
+			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp)
+			vec += weight * -position.direction_to(obj.position)
+	
+	if vec.length() < 5 && objs.size() > 1:
+		vec.y *= 3
+	
+	if velocity.length() < 95 && objs.size() > 1:
+		vec.y += 10
+		vec.x -= vec.x * .2
+		
+	return vec.normalized() * 100
 	
 
 func attack():
