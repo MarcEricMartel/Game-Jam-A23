@@ -75,10 +75,10 @@ func attack():
 
 func stop_attack():
 	is_attacking = false
-	get_node("AttackArea/Attack1CollisionL").set_disabled(true)
-	get_node("AttackArea/Attack1CollisionR").set_disabled(true)
-	get_node("AttackArea/Attack2CollisionL").set_disabled(true)
-	get_node("AttackArea/Attack2CollisionR").set_disabled(true)
+	atk1l.set_disabled(true)
+	atk1r.set_disabled(true)
+	atk2l.set_disabled(true)
+	atk2r.set_disabled(true)
 	
 
 func setAnimState(newstate):
