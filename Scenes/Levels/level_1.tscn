@@ -11,25 +11,25 @@
 [node name="Decor" type="Node2D" parent="."]
 
 [node name="Candles" parent="Decor" instance=ExtResource("2_o33c4")]
-position = Vector2(160, 416)
+position = Vector2(160, 384)
 
 [node name="Candles2" parent="Decor" instance=ExtResource("2_o33c4")]
-position = Vector2(160, 160)
+position = Vector2(160, 128)
 
 [node name="Candles3" parent="Decor" instance=ExtResource("2_o33c4")]
-position = Vector2(797.153, 158.518)
+position = Vector2(800, 128)
 
 [node name="Candles4" parent="Decor" instance=ExtResource("2_o33c4")]
-position = Vector2(800.365, 417.055)
+position = Vector2(800, 384)
 
 [node name="Candle" parent="Decor" instance=ExtResource("2_5hdq4")]
-position = Vector2(432, 256)
+position = Vector2(432, 224)
 
 [node name="Candle2" parent="Decor" instance=ExtResource("2_5hdq4")]
-position = Vector2(432, 352)
+position = Vector2(432, 320)
 
 [node name="Candle3" parent="Decor" instance=ExtResource("2_5hdq4")]
-position = Vector2(528, 256)
+position = Vector2(528, 224)
 
 [node name="Candle4" parent="Decor" instance=ExtResource("2_5hdq4")]
-position = Vector2(528, 352)
+position = Vector2(528, 320)
