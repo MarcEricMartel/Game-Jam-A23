@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b5lnjonlf4i1b"]
+[gd_scene load_steps=58 format=3 uid="uid://b5lnjonlf4i1b"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_xj62t"]
 [ext_resource type="Texture2D" uid="uid://xn7yb3f5w17m" path="res://Assets/Knight/noBKG_KnightAttack_strip.png" id="2_dclcl"]
@@ -273,7 +273,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y20yo")
 }],
-"loop": true,
+"loop": false,
 "name": &"Die",
 "speed": 6.0
 }, {
@@ -363,6 +363,12 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0153061, 183.158), 0.0, 0.0, 0, 0, Vector2(1, -98.9474), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_m1iqx"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(1e-05, -276.632), 0.0, 0.0, 0, 0, Vector2(0.994898, 284.211), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2hkm"]
 height = 38.0
 
@@ -371,7 +377,6 @@ radius = 16.0
 height = 72.0
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(10, 10)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xj62t")
@@ -380,18 +385,17 @@ script = ExtResource("1_xj62t")
 sprite_frames = SubResource("SpriteFrames_dqf8u")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.487368
 flip_h = true
 
 [node name="Atk_cooldown" type="Timer" parent="."]
 autostart = true
 
 [node name="LvlUp" type="CPUParticles2D" parent="."]
+modulate = Color(0.701961, 0.6, 0.133333, 1)
 emitting = false
 amount = 14
 one_shot = true
 explosiveness = 0.24
-local_coords = true
 texture = ExtResource("6_53bg1")
 emission_shape = 1
 emission_sphere_radius = 30.23
@@ -406,12 +410,32 @@ scale_amount_min = 0.01
 scale_amount_max = 0.01
 color = Color(1, 1, 1, 0.423529)
 
+[node name="Hit" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.55
+randomness = 0.65
+emission_shape = 1
+emission_sphere_radius = 11.79
+spread = 56.89
+initial_velocity_max = 2.0
+angular_velocity_min = 27.17
+angular_velocity_max = 27.17
+angular_velocity_curve = SubResource("Curve_m1iqx")
+angle_max = 20.0
+scale_amount_max = 3.0
+color = Color(0.713726, 0, 0, 0.717647)
+
 [node name="LvlUpSnd" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CharacterCollision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_p2hkm")
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
