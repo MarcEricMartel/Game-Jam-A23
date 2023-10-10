@@ -57,15 +57,15 @@ func attack():
 	if (level > 1):
 		setAnimState("Attack2")
 		if is_facing_left:
-			atk2l.set_disabled(false)
-		else:
 			atk2r.set_disabled(false)
+		else:
+			atk2l.set_disabled(false)
 	else:
 		setAnimState("Attack")
 		if is_facing_left:
-			atk1l.set_disabled(false)
-		else:
 			atk1r.set_disabled(false)
+		else:
+			atk1l.set_disabled(false)
 	
 
 func stop_attack():
