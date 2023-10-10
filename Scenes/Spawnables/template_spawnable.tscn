@@ -224,12 +224,11 @@ radius = 6.0
 height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2l8j3"]
-radius = 4.0
-height = 14.0
+radius = 7.0
+height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2kl1"]
-radius = 2.0
-height = 16.0
+radius = 8.0
 
 [node name="TemplateSpawnable" type="CharacterBody2D"]
 collision_layer = 6

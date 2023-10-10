@@ -13,5 +13,11 @@ priority = 1
 [node name="AnimatedSprite2D" parent="." index="0"]
 frame_progress = 0.482614
 
+[node name="AttackCollision" parent="Attack" index="0"]
+position = Vector2(8, 1)
+
+[node name="DamageCollision" parent="Attack" index="1"]
+position = Vector2(10, 1)
+
 [node name="AI" parent="." index="3"]
 script = ExtResource("2_x3ldf")
