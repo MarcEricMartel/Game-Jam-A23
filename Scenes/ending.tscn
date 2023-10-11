@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://drfn4qb06jfla"]
+
+[ext_resource type="Script" path="res://Scripts/ending.gd" id="1_1hyxj"]
+[ext_resource type="PackedScene" uid="uid://b5lnjonlf4i1b" path="res://Scenes/enemy.tscn" id="1_38e81"]
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1hyxj")
+
+[node name="Enemy" parent="." instance=ExtResource("1_38e81")]
+position = Vector2(719, 305)
+scale = Vector2(8, 8)
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 421.0
+offset_right = 205.0
+offset_bottom = 455.0
+text = "Quit"
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 38.0
+offset_right = 536.0
+offset_bottom = 82.0
+
+[node name="Killcount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 160.0
+offset_right = 138.0
+offset_bottom = 186.0
+text = "Nombre de victimes:
+"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 191.0
+offset_right = 107.0
+offset_bottom = 217.0
+text = "Niveau:
+"
+
+[node name="Exp" type="Label" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 223.0
+offset_right = 152.0
+offset_bottom = 249.0
+text = "Expérience:"
+
+[node name="AmtKill" type="Label" parent="."]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 161.0
+offset_right = 276.0
+offset_bottom = 184.0
+
+[node name="AmtLvl" type="Label" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 193.0
+offset_right = 171.0
+offset_bottom = 216.0
+
+[node name="AmtExp" type="Label" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 226.0
+offset_right = 199.0
+offset_bottom = 249.0
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
