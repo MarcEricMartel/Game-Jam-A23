@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl0d1m1gfcd4o"]
+[gd_scene load_steps=6 format=3 uid="uid://dl0d1m1gfcd4o"]
 
 [ext_resource type="PackedScene" uid="uid://f7n8gd1wlv4v" path="res://Scenes/Player/UI/spawnable_button.tscn" id="1_tvnet"]
 [ext_resource type="PackedScene" uid="uid://brnx3xyyd0e71" path="res://Scenes/Spawnables/bat_spawnable.tscn" id="2_borla"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="3_5io10"]
+[ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="4_nd7nb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_if561"]
 resource_local_to_scene = true
@@ -17,6 +18,33 @@ texture = SubResource("AtlasTexture_if561")
 
 [node name="Label" parent="." index="2"]
 text = "Bat"
+
+[node name="ToolTip" type="PanelContainer" parent="." index="3"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -91.0
+offset_right = -10.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("4_nd7nb")
+metadata/_edit_use_anchors_ = true
+
+[node name="ToolTipLabel" type="Label" parent="ToolTip" index="0"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Attack  : 100
+HP: 30
+"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
