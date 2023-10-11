@@ -1,11 +1,14 @@
-[gd_scene load_steps=55 format=3 uid="uid://35re5c6wyhp5"]
+[gd_scene load_steps=58 format=3 uid="uid://cwlfq7dnrtgh7"]
 
 [ext_resource type="PackedScene" uid="uid://kkfxguj0lr5a" path="res://Scenes/Spawnables/template_spawnable.tscn" id="1_t7ryl"]
 [ext_resource type="Texture2D" uid="uid://bnch5lviqbpka" path="res://Assets/Wolf/noBKG_WolfRun_strip.png" id="2_35toa"]
 [ext_resource type="Texture2D" uid="uid://bvscc18reoyoo" path="res://Assets/Wolf/noBKG_WolfAttack_strip.png" id="2_arbvu"]
 [ext_resource type="Texture2D" uid="uid://dd1cbeyvlpn53" path="res://Assets/Wolf/noBKG_WolfIdle_strip.png" id="2_bk8d7"]
 [ext_resource type="Texture2D" uid="uid://cowhod231qvc7" path="res://Assets/Wolf/noBKG_WolfDeath_strip.png" id="3_tbpyw"]
+[ext_resource type="AudioStream" uid="uid://j1fxgwc22xsk" path="res://Assets/Audio/Wolves/mixkit-hellhound-monster-attack-dog-wolf-creature-3015.wav" id="6_1imso"]
 [ext_resource type="Script" path="res://Scenes/Spawnables/AIs/ai_bat.gd" id="6_g2ost"]
+[ext_resource type="AudioStream" uid="uid://cvu0rfyj8amhi" path="res://Assets/Audio/Wolves/mixkit-werewolf-roar-1730.mp3" id="7_brppl"]
+[ext_resource type="AudioStream" uid="uid://beuuur3tlsjrp" path="res://Assets/Audio/Wolves/mixkit-wolves-pack-howling-1776.wav" id="8_k62ik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1jpo"]
 atlas = ExtResource("2_bk8d7")
@@ -355,7 +358,7 @@ offset_bottom = 2.0
 sprite_frames = SubResource("SpriteFrames_iknep")
 animation = &"default"
 frame = 0
-frame_progress = 0.398233
+frame_progress = 0.996176
 
 [node name="BodyCollision" parent="." index="2"]
 shape = SubResource("CapsuleShape2D_oxc6d")
@@ -374,3 +377,20 @@ script = ExtResource("6_g2ost")
 [node name="LightOccluder2D" parent="." index="7"]
 position = Vector2(3, 0)
 occluder = SubResource("OccluderPolygon2D_jmta4")
+
+[node name="Spawn1" parent="." index="8"]
+stream = ExtResource("6_1imso")
+
+[node name="Spawn2" parent="." index="9"]
+stream = ExtResource("7_brppl")
+
+[node name="Spawn3" parent="." index="10"]
+stream = ExtResource("8_k62ik")
+
+[node name="Spawn4" parent="." index="11"]
+stream = ExtResource("6_1imso")
+pitch_scale = 0.83
+
+[node name="Spawn5" parent="." index="12"]
+stream = ExtResource("7_brppl")
+pitch_scale = 0.8

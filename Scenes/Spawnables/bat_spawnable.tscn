@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://brnx3xyyd0e71"]
+[gd_scene load_steps=10 format=3 uid="uid://brnx3xyyd0e71"]
 
 [ext_resource type="PackedScene" uid="uid://kkfxguj0lr5a" path="res://Scenes/Spawnables/template_spawnable.tscn" id="1_verf7"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="2_0p8tq"]
 [ext_resource type="Script" path="res://Scenes/Spawnables/AIs/ai_bat.gd" id="2_x3ldf"]
+[ext_resource type="AudioStream" uid="uid://cy210ijd2v1dt" path="res://Assets/Audio/Bats/bat_spawn1.mp3" id="4_23i1n"]
+[ext_resource type="AudioStream" uid="uid://cgtd1h5ewkq5d" path="res://Assets/Audio/Bats/bat_spawn2.mp3" id="5_lxf0c"]
+[ext_resource type="AudioStream" uid="uid://dbwrhm30srugh" path="res://Assets/Audio/Bats/bat_spawn3.mp3" id="6_i83i4"]
+[ext_resource type="AudioStream" uid="uid://gd8crqxuiivn" path="res://Assets/Audio/Bats/bat_spawn4.mp3" id="7_hh1mb"]
+[ext_resource type="AudioStream" uid="uid://dyl0goef8y6bu" path="res://Assets/Audio/Bats/bat_spawn5.mp3" id="8_o2d7p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnd0j"]
 atlas = ExtResource("2_0p8tq")
@@ -26,3 +31,18 @@ frame_progress = 0.482614
 
 [node name="AI" parent="." index="5"]
 script = ExtResource("2_x3ldf")
+
+[node name="Spawn1" parent="." index="8"]
+stream = ExtResource("4_23i1n")
+
+[node name="Spawn2" parent="." index="9"]
+stream = ExtResource("5_lxf0c")
+
+[node name="Spawn3" parent="." index="10"]
+stream = ExtResource("6_i83i4")
+
+[node name="Spawn4" parent="." index="11"]
+stream = ExtResource("7_hh1mb")
+
+[node name="Spawn5" parent="." index="12"]
+stream = ExtResource("8_o2d7p")
