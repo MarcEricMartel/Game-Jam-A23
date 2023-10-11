@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://0onqgygm832d"]
+[gd_scene load_steps=4 format=3 uid="uid://0onqgygm832d"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_63swt"]
+[ext_resource type="PackedScene" uid="uid://bj2kxv2gq5ase" path="res://Scenes/Player/UI/cursor_state.tscn" id="3_0uor3"]
 [ext_resource type="PackedScene" uid="uid://dmvukn3rl6gbx" path="res://Scenes/Player/UI/player_ui.tscn" id="3_nbue7"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_63swt")
+
+[node name="CursorState" parent="." instance=ExtResource("3_0uor3")]
+z_index = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
