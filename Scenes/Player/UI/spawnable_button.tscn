@@ -1,21 +1,98 @@
-[gd_scene load_steps=2 format=3 uid="uid://f7n8gd1wlv4v"]
+[gd_scene load_steps=8 format=3 uid="uid://f7n8gd1wlv4v"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_iksd1"]
+[ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="1_ep8kc"]
+[ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="1_w23sr"]
+[ext_resource type="Script" path="res://Scenes/Player/UI/spawnable_button.gd" id="2_d0sgh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10isv"]
+resource_local_to_scene = true
+atlas = ExtResource("1_w23sr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_r6yl2"]
+resource_name = "AnimateTextureRect"
+length = 0.666675
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedTextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 64, 64), Rect2(64, 0, 64, 64), Rect2(128, 0, 64, 64), Rect2(192, 0, 64, 64), Rect2(256, 0, 64, 64), Rect2(320, 0, 64, 64), Rect2(384, 0, 64, 64), Rect2(448, 0, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_tak1b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedTextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(64, 0, 64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o4ue"]
+_data = {
+"AnimateTextureRect": SubResource("Animation_r6yl2"),
+"RESET": SubResource("Animation_tak1b")
+}
 
 [node name="SpawnableButton" type="Button"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -854.0
+offset_bottom = -499.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_ep8kc")
+toggle_mode = true
+script = ExtResource("2_d0sgh")
 
-[node name="Animation" type="TextureRect" parent="."]
+[node name="AnimatedTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -1.78302
+anchor_top = -0.414634
+anchor_right = 2.78302
+anchor_bottom = 1.14634
+offset_left = 210.0
+offset_right = -210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_10isv")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0o4ue")
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -18.0
 grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AnimatedTexture_iksd1")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation"]
+grow_vertical = 0
+theme = ExtResource("1_ep8kc")
+text = "Template"
+horizontal_alignment = 1
+vertical_alignment = 1

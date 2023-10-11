@@ -1,18 +1,43 @@
-[gd_scene format=3 uid="uid://dmvukn3rl6gbx"]
+[gd_scene load_steps=4 format=3 uid="uid://dmvukn3rl6gbx"]
 
-[node name="PlayerUI" type="CanvasLayer"]
+[ext_resource type="Script" path="res://Scenes/Player/UI/player_ui.gd" id="1_4nwdk"]
+[ext_resource type="PackedScene" uid="uid://dl0d1m1gfcd4o" path="res://Scenes/Player/UI/bat_button.tscn" id="1_tnnk6"]
+[ext_resource type="ButtonGroup" uid="uid://gjbbywsr8n8b" path="res://Scenes/Player/UI/spawnables_button_group.tres" id="3_7a133"]
 
-[node name="UIRoot" type="Control" parent="."]
+[node name="PlayerUI" type="Control"]
 layout_mode = 3
-anchor_top = 0.874
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 9.0
-offset_right = -9.0
-offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4nwdk")
+buttonGroup = ExtResource("3_7a133")
+
+[node name="MenuZone" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.859
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.139984
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
+
+[node name="UIRoot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -60.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
 
 [node name="ControlPanel" type="HBoxContainer" parent="UIRoot"]
 layout_mode = 1
@@ -21,14 +46,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 2
 alignment = 1
 
 [node name="StatPanel" type="Control" parent="UIRoot/ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ButtonPanel" type="HBoxContainer" parent="UIRoot/ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 4
+
+[node name="SpawnableButton" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
+layout_mode = 2
+button_group = ExtResource("3_7a133")
+
+[node name="SpawnableButton2" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
+layout_mode = 2
+button_group = ExtResource("3_7a133")
+
+[node name="SpawnableButton3" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
+layout_mode = 2
+button_group = ExtResource("3_7a133")
+
+[node name="SpawnableButton4" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
+layout_mode = 2
+button_group = ExtResource("3_7a133")

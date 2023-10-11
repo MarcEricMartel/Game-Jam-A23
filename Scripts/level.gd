@@ -12,4 +12,3 @@ func _process(delta):
 
 func win_screen():
 	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
-	
