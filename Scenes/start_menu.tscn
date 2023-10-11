@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkt0gdgv7bsx2"]
+[gd_scene load_steps=6 format=3 uid="uid://bkt0gdgv7bsx2"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_dgae7"]
+[ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="2_0sfou"]
+[ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="3_puxi3"]
+[ext_resource type="Texture2D" uid="uid://cxk21atb8fblp" path="res://Assets/Witch/noBKG_WitchThrow_strip.png" id="4_qq6xh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7r5ov"]
-font_size = 69
+[sub_resource type="AtlasTexture" id="AtlasTexture_je3v2"]
+atlas = ExtResource("4_qq6xh")
+region = Rect2(1024, 0, 64, 64)
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -14,34 +18,75 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dgae7")
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 260.0
-offset_top = 95.0
-offset_right = 910.0
-offset_bottom = 389.0
-text = "UNTITLED GAME
-THAT MAY BE 
-ABOUT A MONSTER"
-label_settings = SubResource("LabelSettings_7r5ov")
-horizontal_alignment = 1
+[node name="TileSet1" parent="." instance=ExtResource("2_0sfou")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.117647, 0.407843, 0.215686)
 
 [node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 442.0
-offset_right = 558.0
-offset_bottom = 489.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 304.0
+offset_top = -92.0
+offset_right = 442.0
+offset_bottom = -45.0
+grow_vertical = 0
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 570.0
-offset_top = 442.0
-offset_right = 705.0
-offset_bottom = 489.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -92.0
+offset_right = -305.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Quit
 "
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = 120.0
+offset_right = 41.0
+offset_bottom = 146.0
+grow_horizontal = 2
+theme = ExtResource("3_puxi3")
+theme_override_colors/font_color = Color(0.635294, 0.0352941, 0.121569, 1)
+theme_override_colors/font_shadow_color = Color(0.278431, 0, 0.0235294, 1)
+theme_override_colors/font_outline_color = Color(0.6, 0, 0, 0.631373)
+theme_override_font_sizes/font_size = 72
+text = "Blud Mage"
+
+[node name="Image" type="TextureRect" parent="Title"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 56.0
+offset_right = 136.0
+offset_bottom = 312.0
+grow_horizontal = 2
+texture = SubResource("AtlasTexture_je3v2")
+expand_mode = 2
+stretch_mode = 5
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
