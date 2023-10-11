@@ -109,7 +109,7 @@ func processAI(objs):
 	
 	if velocity.length() < 95 && objs.size() > 1:
 		vec.y += 10
-		vec.x -= vec.x * .2
+		#vec.x -= vec.x * .2
 		
 	return vec.normalized() * 100
 	
