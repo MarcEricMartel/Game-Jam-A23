@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgtscjxcqoxls"]
+[gd_scene load_steps=9 format=3 uid="uid://cl7w6ndvons1a"]
 
 [ext_resource type="Texture2D" uid="uid://dvtntmnfw83ms" path="res://Assets/RF_Catacombs_v1.0/candleA_02.png" id="1_2uqmc"]
 [ext_resource type="Texture2D" uid="uid://biomqy201h4yk" path="res://Assets/RF_Catacombs_v1.0/candleA_03.png" id="2_dgnwu"]
@@ -26,12 +26,12 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_sm8o0"]
+[sub_resource type="Gradient" id="Gradient_uxp8x"]
 offsets = PackedFloat32Array(0, 0.736573)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mton1"]
-gradient = SubResource("Gradient_sm8o0")
+gradient = SubResource("Gradient_uxp8x")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
