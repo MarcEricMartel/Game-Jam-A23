@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var is_dying: bool = false
 
 @export var level: int = 1
-@export var hp: int = 100
+@export var hp: int = 50
 @export var maxhp: int = 100
 @export var maxvel: float = 2
 @export var experience: int = 0
@@ -32,6 +32,7 @@ extends CharacterBody2D
 @onready var atkL: Node = atk1l
 @onready var atkR: Node = atk1r
 @onready var atk: String = "Attack"
+@onready var is_dead: bool = false
 
 @onready var list: Array = []
 
@@ -45,7 +46,7 @@ func remove_foe(foe):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setLevel(2)
+	#setLevel(2)
 	atk1l.set_disabled(true)
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
@@ -54,6 +55,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if is_dead:
+		pass
+	
 	if hp <= 0 && !is_dying:
 		$Death.start()
 		$Atk_cooldown.stop()
@@ -63,7 +67,7 @@ func _process(delta):
 		$DeathSnd.play()
 	
 	if is_dying:
-		pass
+		is_dead = true
 	if abs(velocity.x) < 1 && abs(velocity.y) < 1 && !is_attacking:
 		setAnimState("Idle")
 	elif !is_attacking:
@@ -71,7 +75,7 @@ func _process(delta):
 	
 	if state != "Attack" && state != "Attack2":
 		is_facing_left = velocity.x > 0 && !(velocity.x < 0)
-
+	
 	if currentcooldown > 0.:
 		currentcooldown -= delta
 	# AI STUFF
@@ -186,7 +190,8 @@ func setLevel(lvl):
 
 func _on_atk_cooldown_timeout():
 	currAtks = maxAtks
-	attack()
+	if !list.is_empty():
+		attack()
 	
 
 func _on_sprite_animation_looped():
@@ -207,9 +212,13 @@ func _on_attack_area_body_entered(body):
 	
 
 func _on_death_timeout():
-	pass
-
-func _on_sprite_animation_finished():
 	$"..".win_screen()
 	queue_free()
+	
+func _on_sprite_animation_finished():
+	pass
 
+
+
+func _on_death_snd_finished():
+	$DeathSnd.stop()
