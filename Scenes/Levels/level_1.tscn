@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_0nmok"]
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="1_4n82n"]
-[ext_resource type="PackedScene" path="res://Scenes/Props/candle_1.tscn" id="2_5hdq4"]
-[ext_resource type="PackedScene" path="res://Scenes/Props/candle_2.tscn" id="2_o33c4"]
+[ext_resource type="PackedScene" uid="uid://cl7w6ndvons1a" path="res://Scenes/Props/candle_1.tscn" id="2_5hdq4"]
+[ext_resource type="PackedScene" uid="uid://by2xmwcng01uy" path="res://Scenes/Props/candle_2.tscn" id="2_o33c4"]
 [ext_resource type="PackedScene" uid="uid://b5lnjonlf4i1b" path="res://Scenes/enemy.tscn" id="4_g0oey"]
 [ext_resource type="PackedScene" uid="uid://0onqgygm832d" path="res://Scenes/Player/player.tscn" id="5_ik47y"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_0nmok")
+
+[node name="Player" parent="." instance=ExtResource("5_ik47y")]
 
 [node name="TileSet1" parent="." instance=ExtResource("1_4n82n")]
 
@@ -40,5 +42,3 @@ position = Vector2(528, 320)
 
 [node name="Enemy" parent="." instance=ExtResource("4_g0oey")]
 position = Vector2(481.898, 270.98)
-
-[node name="Player" parent="." instance=ExtResource("5_ik47y")]
