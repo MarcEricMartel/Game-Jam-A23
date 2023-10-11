@@ -22,8 +22,8 @@ extends CharacterBody2D
 @onready var lvlanim: Node = get_node("LvlUp")
 @onready var lvlsnd: Node = get_node("LvlUpSnd")
 @onready var hitanim: Node = get_node("Hit")
-@onready var atk1l: Node = get_node("AttackArea/Attack1CollisionL")
-@onready var atk1r: Node = get_node("AttackArea/Attack1CollisionR")
+@onready var atk1l: Node = get_node("AttackArea/Attack1CollisionR")
+@onready var atk1r: Node = get_node("AttackArea/Attack1CollisionL")
 @onready var atk2l: Node = get_node("AttackArea/Attack2CollisionR")
 @onready var atk2r: Node = get_node("AttackArea/Attack2CollisionL")
 
@@ -43,7 +43,7 @@ func remove_foe(foe):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setLevel(4)
+	setLevel(2)
 	atk1l.set_disabled(true)
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
@@ -126,6 +126,7 @@ func processAI(objs):
 	
 	if velocity.length() < 95 && objs.size() > 1:
 		vec.y += 10
+		vec.x += 5
 		
 	return vec.normalized() * 100
 	
@@ -170,6 +171,7 @@ func setLevel(lvl):
 	level = lvl
 	lvlanim.restart()
 	lvlsnd.play()
+	stop_attack()
 	
 	if level > 3:
 		atk = "Attack2"

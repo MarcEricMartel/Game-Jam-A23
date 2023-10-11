@@ -9,6 +9,7 @@ attackSpeed = 50.0
 speed = 4000.0
 damage = 1
 priority = 1
+expReward = 50
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 frame_progress = 0.482614
