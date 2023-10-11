@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://0onqgygm832d"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_63swt"]
+[ext_resource type="PackedScene" uid="uid://brnx3xyyd0e71" path="res://Scenes/Spawnables/bat_spawnable.tscn" id="2_fd41r"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_63swt")
+batTemplatePath = ExtResource("2_fd41r")
