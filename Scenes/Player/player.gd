@@ -1,25 +1,32 @@
 extends Node2D
 
-const BASE_BLOOD_GEN = 10
-const STARTING_BLOOD_AMOUNT = 100
+const BASE_Blud_GEN = 10
+const STARTING_Blud_AMOUNT = 100
 
-var currentBloodAmount : int = 0
-var currentBloodGen : float = 0
+var currentBludAmount : float = 0
+var currentBludGen : float = 0
 var currentSpawnableScene : PackedScene = null
 var currentRefInstance : TemplateSpawnable = null
+var currentCost : float = 0
 var currentStateIcon : Texture2D = null
 var allSpawnedMonsters : Dictionary = {}
 var currentSpawnedMonsters : Array = []
-@onready var menuZone : Control = $Camera2D/CanvasLayer/PlayerUI.menuZone
-@onready var enemy : CharacterBody2D = $"../Enemy"
+@onready var menuZone : Control = $Camera2D/CanvasLayer/PlayerUI/MenuZone
+@onready var playerUI : Control = $Camera2D/CanvasLayer/PlayerUI
+@onready var enemy : Fabio = $"../Enemy"
 @onready var playableArea : Area2D = $"../PlayableArea"
 @onready var cursorState : Node2D = $CursorState
 
 var isInPlayableArea : bool = false
 
 func _ready():
-	currentBloodAmount = STARTING_BLOOD_AMOUNT
-	currentBloodGen = BASE_BLOOD_GEN
+	currentBludAmount = STARTING_Blud_AMOUNT
+	currentBludGen = BASE_Blud_GEN
+	
+	enemy.exp_gained.connect(playerUI.set_xp)
+	enemy.hp_changed.connect(playerUI.set_hp)
+	
+	playerUI.set_blud(currentBludGen, currentBludAmount)
 	
 	playableArea.mouse_entered.connect(entered_playable_area)
 	playableArea.mouse_exited.connect(exited_playable_area)
@@ -28,16 +35,24 @@ func _process(delta):
 	handle_menu_inputs()
 	handle_spawn()
 	handle_cursor_state()
-	
+	currentBludAmount += currentBludGen * delta
+	playerUI.set_blud_total(currentBludAmount)
 
 func add_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.append(monster)
+	
+	currentBludGen += monster.BludGen
+	playerUI.set_blud_gen(currentBludGen)
+	
 	if !allSpawnedMonsters.has(monster.monsterName):
 		allSpawnedMonsters[monster.monsterName] = 0
 	allSpawnedMonsters[monster.monsterName] += 1
 
 func remove_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.erase(monster)
+	
+	currentBludGen -= monster.BludGen
+	playerUI.set_blud_gen(currentBludGen)
 
 func entered_playable_area():
 	cursorState.set_cursor_state("", currentStateIcon)
@@ -62,12 +77,24 @@ func handle_spawn():
 		spawn_current()
 
 func handle_cursor_state():
+	if cursorState.infoLabel.text != "out of bounds":
+		if currentBludAmount < currentCost:
+			cursorState.set_cursor_state_info("not enough blud")
+		else:
+			cursorState.set_cursor_state_info("")
 	cursorState.visible = !is_in_menu()
 	cursorState.global_position = get_global_mouse_position()
 
 func spawn_current():
 	if !isInPlayableArea || is_in_menu() || currentSpawnableScene == null:
 		return
+	
+	if currentBludAmount < currentCost:
+		if cursorState.infoLabel.text == "":
+			cursorState.set_cursor_state_info("not enough blud")
+		return
+	
+	currentBludAmount -= currentCost
 	var spawnable = currentSpawnableScene.instantiate()
 	spawnable.global_position = get_global_mouse_position()
 	$"..".add_child(spawnable)
@@ -97,5 +124,6 @@ func _on_player_ui_button_changed(currentButton):
 	currentSpawnableScene = currentButton.spawnableScene
 	currentRefInstance = currentSpawnableScene.instantiate()
 	currentStateIcon = currentRefInstance.monsterIcon
+	currentCost = currentRefInstance.cost
 	cursorState.set_cursor_state("", currentStateIcon)
 	

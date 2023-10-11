@@ -6,3 +6,6 @@ extends Node2D
 func set_cursor_state(info : String, image: Texture2D):
 	infoLabel.text = info
 	imageTexture.texture = image
+
+func set_cursor_state_info(info : String):
+	infoLabel.text = info
