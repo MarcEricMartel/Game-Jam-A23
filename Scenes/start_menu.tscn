@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkt0gdgv7bsx2"]
+[gd_scene load_steps=8 format=3 uid="uid://bkt0gdgv7bsx2"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_dgae7"]
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="2_0sfou"]
 [ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="3_puxi3"]
 [ext_resource type="Texture2D" uid="uid://cxk21atb8fblp" path="res://Assets/Witch/noBKG_WitchThrow_strip.png" id="4_qq6xh"]
+[ext_resource type="AudioStream" uid="uid://bdkt27mbfvuxs" path="res://Assets/Audio/cave_ambience.mp3" id="5_c04sa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1owyk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -114,6 +115,10 @@ grow_horizontal = 2
 texture = SubResource("AtlasTexture_je3v2")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="backgroundAmbiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c04sa")
+volume_db = 2.0
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
