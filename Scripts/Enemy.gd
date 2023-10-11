@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var damage: int = 5
 @export var maxAtks: int = 1
 
+@onready var killcount: int = 0
 @onready var currAtks: int = 0
 @onready var anim: Node = get_node("Sprite")
 @onready var cooldown: Node = get_node("Atk_cooldown")
@@ -23,8 +24,8 @@ extends CharacterBody2D
 @onready var hitanim: Node = get_node("Hit")
 @onready var atk1l: Node = get_node("AttackArea/Attack1CollisionL")
 @onready var atk1r: Node = get_node("AttackArea/Attack1CollisionR")
-@onready var atk2l: Node = get_node("AttackArea/Attack2CollisionL")
-@onready var atk2r: Node = get_node("AttackArea/Attack2CollisionR")
+@onready var atk2l: Node = get_node("AttackArea/Attack2CollisionR")
+@onready var atk2r: Node = get_node("AttackArea/Attack2CollisionL")
 
 @onready var atkL: Node = atk1l
 @onready var atkR: Node = atk1r
@@ -36,11 +37,13 @@ func add_foe(foe):
 	list.append(foe)
 
 func remove_foe(foe):
+	receive_exp(foe.expReward)
 	list.erase(foe)
+	killcount += 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setLevel(8)
+	setLevel(4)
 	atk1l.set_disabled(true)
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
@@ -58,7 +61,7 @@ func _process(delta):
 		
 	if is_dying:
 		pass
-	if abs(velocity.x) < 0.2 && abs(velocity.y) < 0.2 && !is_attacking:
+	if abs(velocity.x) < 1 && abs(velocity.y) < 1 && !is_attacking:
 		setAnimState("Idle")
 	elif !is_attacking:
 		setAnimState("Run")
@@ -90,8 +93,8 @@ func _process(delta):
 	while velocity.length() > 100:
 		velocity.x *= 0.99
 		velocity.y *= 0.99
-	velocity.x *= 0.99
-	velocity.y *= 0.99
+	velocity.x *= 0.97
+	velocity.y *= 0.97
 	#velocity.x += x
 	#velocity.y += y
 	

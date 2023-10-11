@@ -84,9 +84,9 @@ func endAttack():
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
+	print(currentHp - dmg)
 	if !isAlive:
 		return
-	
 	if currentHp - dmg <= 0:
 		currentHp = 0
 		call_deferred("die")
