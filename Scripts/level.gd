@@ -3,7 +3,7 @@ extends Node2D
 var length: int = 0
 var time: int = 0
 var countdown: float = 0
-@onready var player:= $Player
+@onready var player : Player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
