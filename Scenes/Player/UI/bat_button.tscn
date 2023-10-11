@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl0d1m1gfcd4o"]
+[gd_scene load_steps=5 format=3 uid="uid://dl0d1m1gfcd4o"]
 
 [ext_resource type="PackedScene" uid="uid://f7n8gd1wlv4v" path="res://Scenes/Player/UI/spawnable_button.tscn" id="1_tvnet"]
 [ext_resource type="PackedScene" uid="uid://brnx3xyyd0e71" path="res://Scenes/Spawnables/bat_spawnable.tscn" id="2_borla"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="3_5io10"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qf7uu"]
-atlas = ExtResource("3_5io10")
-region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_if561"]
 resource_local_to_scene = true
@@ -15,7 +11,6 @@ region = Rect2(64, 0, 64, 64)
 
 [node name="BatButton" instance=ExtResource("1_tvnet")]
 spawnableScene = ExtResource("2_borla")
-spawnableIcon = SubResource("AtlasTexture_qf7uu")
 
 [node name="AnimatedTextureRect" parent="." index="0"]
 texture = SubResource("AtlasTexture_if561")

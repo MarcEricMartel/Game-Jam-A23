@@ -12,7 +12,8 @@ const ATTACK_COOLDOWN : float = 100
 @export var cost : int = 0
 @export var minSpawnRange : float = 0
 @export var canAttack : bool = true
-
+@export var monsterName : String = ""
+@export var monsterIcon : Texture2D = null
 
 @onready var ai : Node = $AI
 @onready var animatedSprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -28,6 +29,8 @@ var enemy : CharacterBody2D = null
 
 var currentHp : int = 0
 var cooldown : float = 0
+
+signal signal_death(monster : TemplateSpawnable)
 
 func _ready():
 	enemy = get_node("../Enemy")
@@ -95,6 +98,7 @@ func receive_damage(dmg):
 
 func die():
 	enemy.remove_foe(self)
+	signal_death.emit(self)
 	bodyCollision.disabled = true
 	damageCollision.disabled = true
 	spawnableUI.visible = false
