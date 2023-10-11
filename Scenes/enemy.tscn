@@ -364,6 +364,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0153061, 183.158), 0.0, 0.0, 0
 point_count = 3
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2hkm"]
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qykhm"]
 radius = 16.0
@@ -428,7 +429,7 @@ color = Color(1, 1, 1, 0.423529)
 [node name="LvlUpSnd" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CharacterCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_p2hkm")
 
 [node name="AttackArea" type="Area2D" parent="."]
