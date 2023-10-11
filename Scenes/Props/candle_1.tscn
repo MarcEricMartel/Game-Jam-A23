@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgtscjxcqoxls"]
+[gd_scene load_steps=9 format=3 uid="uid://cl7w6ndvons1a"]
 
 [ext_resource type="Texture2D" uid="uid://dvtntmnfw83ms" path="res://Assets/RF_Catacombs_v1.0/candleA_02.png" id="1_2uqmc"]
 [ext_resource type="Texture2D" uid="uid://biomqy201h4yk" path="res://Assets/RF_Catacombs_v1.0/candleA_03.png" id="2_dgnwu"]
@@ -55,5 +55,8 @@ visibility_rect = Rect2(0, 0, 0, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.698039, 0.2, 1)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 20.5
 texture = SubResource("GradientTexture2D_mton1")
 texture_scale = 1.5

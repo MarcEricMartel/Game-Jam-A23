@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://kkfxguj0lr5a"]
+[gd_scene load_steps=39 format=3 uid="uid://kkfxguj0lr5a"]
 
 [ext_resource type="Script" path="res://Scenes/Spawnables/template_spawnable.gd" id="1_rkej7"]
 [ext_resource type="Texture2D" uid="uid://f60ndepwmpj2" path="res://Assets/Bat/noBKG_BatAttack_strip.png" id="2_7ayi7"]
@@ -231,6 +231,9 @@ height = 24.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o2kl1"]
 radius = 8.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qtt12"]
+polygon = PackedVector2Array(-4, -6, 3, -6, 7, -2, 5, 5, -1, 6, -6, 4, -7, -2)
+
 [node name="TemplateSpawnable" type="CharacterBody2D"]
 collision_layer = 6
 collision_mask = 6
@@ -282,5 +285,8 @@ debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 [node name="AI" type="Node" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_qtt12")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
