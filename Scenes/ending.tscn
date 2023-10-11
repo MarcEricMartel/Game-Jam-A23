@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://drfn4qb06jfla"]
+[gd_scene load_steps=88 format=3 uid="uid://v0vtf1d1iusm"]
 
 [ext_resource type="Script" path="res://Scripts/ending.gd" id="1_1hyxj"]
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="2_yeqls"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckeayob6k71b1" path="res://Assets/Witch/noBKG_WitchIdle_strip.png" id="7_wm35e"]
 [ext_resource type="Texture2D" uid="uid://dyoeqid128gvx" path="res://Assets/Golem/noBKG_GolemIdle_strip.png" id="8_gwm2y"]
 [ext_resource type="Texture2D" uid="uid://b3a5g03ukunfa" path="res://Assets/Knight/noBKG_KnightIdle_strip.png" id="10_hwaw0"]
+[ext_resource type="Texture2D" uid="uid://iy5flm8rgj60" path="res://Assets/Inverted hourglass1.png" id="12_iov5c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6btik"]
 atlas = ExtResource("5_pr1ps")
@@ -659,7 +660,7 @@ size_flags_horizontal = 3
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TotalArmyComp/Separation/ArmyTotals/Bats/Control"]
 position = Vector2(24, 18)
 sprite_frames = SubResource("SpriteFrames_kjfbi")
-frame_progress = 0.806293
+frame_progress = 0.761512
 
 [node name="2Points" type="Label" parent="TotalArmyComp/Separation/ArmyTotals/Bats"]
 layout_mode = 2
@@ -687,7 +688,7 @@ size_flags_horizontal = 3
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TotalArmyComp/Separation/ArmyTotals/Wolves/Control"]
 position = Vector2(24, 16)
 sprite_frames = SubResource("SpriteFrames_h2asb")
-frame_progress = 0.808144
+frame_progress = 0.763364
 
 [node name="2Points" type="Label" parent="TotalArmyComp/Separation/ArmyTotals/Wolves"]
 layout_mode = 2
@@ -715,7 +716,7 @@ size_flags_horizontal = 3
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TotalArmyComp/Separation/ArmyTotals/Necromancers/Control"]
 position = Vector2(24, 22)
 sprite_frames = SubResource("SpriteFrames_0hwvy")
-frame_progress = 0.223527
+frame_progress = 0.178747
 
 [node name="2Points" type="Label" parent="TotalArmyComp/Separation/ArmyTotals/Necromancers"]
 layout_mode = 2
@@ -743,7 +744,7 @@ size_flags_horizontal = 3
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TotalArmyComp/Separation/ArmyTotals/Pit Fiends/Control"]
 position = Vector2(24, 22)
 sprite_frames = SubResource("SpriteFrames_3y7oi")
-frame_progress = 0.437328
+frame_progress = 0.392548
 
 [node name="2Points" type="Label" parent="TotalArmyComp/Separation/ArmyTotals/Pit Fiends"]
 layout_mode = 2
@@ -823,12 +824,42 @@ flip_h = true
 position = Vector2(784, 288)
 scale = Vector2(7.765, 7.765)
 sprite_frames = SubResource("SpriteFrames_5yana")
-frame_progress = 0.910776
+frame_progress = 0.865996
 flip_h = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_q0fqf")
 pitch_scale = 0.4
 autoplay = true
+
+[node name="Time" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 96.0
+offset_right = 320.0
+offset_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hourglass" type="TextureRect" parent="Time/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_iov5c")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TimeLabel" type="Label" parent="Time/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_br77t")
+text = "240 Seconds Remained"
+vertical_alignment = 2
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

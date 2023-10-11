@@ -21,12 +21,13 @@ func _process(delta):
 func win_screen():
 	var enemy = $Enemy
 	var end = load("res://Scenes/ending.tscn").instantiate()
+	end.remainingTime = str(length - time - 1)
 	end.totalBlud = player.totalBludGenerated
 	end.army = player.allSpawnedMonsters
 	end.killcount = enemy.killcount
 	end.level = enemy.level
 	end.exp = enemy.experience
-	end.message = "Fabio le chevalier est mort, bravo."
+	end.message = "The holy knight Fabio is defeated, Evil has won and your magic staff is safe."
 	self.queue_free()
 	get_tree().root.add_child(end)
 	
@@ -39,7 +40,7 @@ func lose_screen():
 	end.level = enemy.level
 	end.exp = enemy.experience
 	end.is_win = false
-	end.message = "Fabio le chevalier et futur roi t'a torché... royalement. (HA!)"
+	end.message = "The holy knight Fabio destroyed you army of evil and left with your magic staff..."
 	self.queue_free()
 	get_tree().root.add_child(end)
 

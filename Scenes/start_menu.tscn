@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkt0gdgv7bsx2"]
+[gd_scene load_steps=7 format=3 uid="uid://bkt0gdgv7bsx2"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_dgae7"]
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="2_0sfou"]
 [ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="3_puxi3"]
 [ext_resource type="Texture2D" uid="uid://cxk21atb8fblp" path="res://Assets/Witch/noBKG_WitchThrow_strip.png" id="4_qq6xh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1owyk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0.254902, 0, 0, 1)
+border_blend = true
+shadow_color = Color(0.223529, 0.0117647, 0.0745098, 0.6)
+shadow_size = 20
+anti_aliasing_size = 2.606
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_je3v2"]
 atlas = ExtResource("4_qq6xh")
@@ -19,6 +31,19 @@ grow_vertical = 2
 script = ExtResource("1_dgae7")
 
 [node name="TileSet1" parent="." instance=ExtResource("2_0sfou")]
+
+[node name="border" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1owyk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -39,6 +64,7 @@ offset_top = -92.0
 offset_right = 442.0
 offset_bottom = -45.0
 grow_vertical = 0
+theme = ExtResource("3_puxi3")
 text = "Start"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -54,6 +80,7 @@ offset_right = -305.0
 offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("3_puxi3")
 text = "Quit
 "
 
