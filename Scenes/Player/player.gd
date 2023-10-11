@@ -13,7 +13,7 @@ var allSpawnedMonsters : Dictionary = {}
 var currentSpawnedMonsters : Array = []
 @onready var menuZone : Control = $Camera2D/CanvasLayer/PlayerUI/MenuZone
 @onready var playerUI : Control = $Camera2D/CanvasLayer/PlayerUI
-@onready var enemy : CharacterBody2D = $"../Enemy"
+@onready var enemy : Fabio = $"../Enemy"
 @onready var playableArea : Area2D = $"../PlayableArea"
 @onready var cursorState : Node2D = $CursorState
 
@@ -22,6 +22,9 @@ var isInPlayableArea : bool = false
 func _ready():
 	currentBludAmount = STARTING_Blud_AMOUNT
 	currentBludGen = BASE_Blud_GEN
+	
+	enemy.exp_gained.connect(playerUI.set_xp)
+	enemy.hp_changed.connect(playerUI.set_hp)
 	
 	playerUI.set_blud(currentBludGen, currentBludAmount)
 	

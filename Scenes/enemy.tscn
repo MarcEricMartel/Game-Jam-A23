@@ -382,6 +382,7 @@ position = Vector2(10, 10)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xj62t")
+maxhp = 50
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_xq5nx")

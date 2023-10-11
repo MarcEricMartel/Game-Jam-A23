@@ -1,3 +1,4 @@
+class_name Fabio
 extends CharacterBody2D
 
 @onready var levelup = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000]
@@ -36,6 +37,9 @@ extends CharacterBody2D
 
 @onready var list: Array = []
 
+signal exp_gained(current, min, max, level)
+signal hp_changed(current, max)
+
 func add_foe(foe):
 	list.append(foe)
 
@@ -51,6 +55,8 @@ func _ready():
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
 	atk2r.set_disabled(true)
+	hp_changed.emit(hp, maxhp)
+	exp_gained.emit(experience, 0 if level == 1 else levelup[level - 2] ,levelup[level - 1], level)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -153,11 +159,15 @@ func receive_damage(dmg):
 	hitanim.restart()
 	anim.modulate.a = 0.5
 	
+	hp_changed.emit(hp, maxhp)
+	
 
 func receive_exp(x):
 	experience += x
 	if experience > levelup[level - 1] && level <= 8:
 		setLevel(level + 1)
+	
+	exp_gained.emit(experience, 0 if level == 1 else levelup[level - 2] ,levelup[level - 1], level)
 	
 
 func setLevel(lvl):
@@ -182,10 +192,12 @@ func setLevel(lvl):
 		maxAtks = 2
 	
 	maxhp += 5
-	hp += maxhp / 2
+	hp += 10
 	
 	if hp > maxhp:
 		hp = maxhp
+	
+	hp_changed.emit(hp, maxhp)
 	
 
 func _on_atk_cooldown_timeout():
