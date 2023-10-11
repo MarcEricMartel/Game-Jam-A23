@@ -237,12 +237,12 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="NecromancerSpawnable" instance=ExtResource("1_scjiu")]
-maxHp = 25
+maxHp = 50
 speed = 2000.0
 priority = 10
-expReward = 150
-BludGen = 7.0
-cost = 200
+expReward = 300
+BludGen = 10.0
+cost = 175
 canAttack = false
 monsterName = "Necromancer"
 monsterIcon = SubResource("AtlasTexture_ac0gw")

@@ -13,7 +13,7 @@ func _ready():
 		return
 		
 	var temp : TemplateSpawnable = spawnableScene.instantiate()
-	label.text = str(temp.monsterName) + " (" + str(temp.cost) + ")"
+	label.text = str(temp.monsterName) + "| " + str(temp.cost)
 	generate_tooltip(temp)
 	temp.queue_free()
 

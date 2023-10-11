@@ -402,12 +402,12 @@ height = 56.0
 polygon = PackedVector2Array(3, -25, 3, -25, -7, -18, -8, -7, -7, 11, 0, 16, 7, 15, 12, 7, 10, -5, 8, -16)
 
 [node name="PitFiendSpawnable" instance=ExtResource("1_u8yit")]
-maxHp = 300
-attackSpeed = 20.0
+maxHp = 200
+attackSpeed = 15.0
 speed = 3000.0
 damage = 20
 priority = 5
-expReward = 1250
+expReward = 2500
 BludGen = 5.0
 cost = 500
 monsterName = "Pit Fiend"

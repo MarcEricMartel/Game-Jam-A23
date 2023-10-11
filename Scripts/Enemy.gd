@@ -1,6 +1,9 @@
 class_name Fabio
 extends CharacterBody2D
 
+const FREE_EXP_RATE = 12
+var freeXpStack = 0
+
 @onready var levelup = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000]
 
 @onready var is_facing_left: bool = false
@@ -96,7 +99,10 @@ func _process(delta):
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
 	
-	
+	if freeXpStack >= 1:
+		receive_exp(floor(freeXpStack))
+		freeXpStack -= floor(freeXpStack)
+	freeXpStack += FREE_EXP_RATE * level * delta
 	move_and_slide()
 	
 
@@ -190,23 +196,26 @@ func setLevel(lvl):
 	lvlsnd.play()
 	stop_attack()
 	
+	if level > 2:
+		damage = 7
+	
 	if level > 3:
 		atk = "Attack2"
 		atkL = atk2l
 		atkR = atk2r
-		damage = 7
+		damage = 14
 		
 	if level > 4:
 		cooldown.wait_time = 1
 	
 	if level > 5:
-		damage = 12
+		damage = 21
 		
 	if level > 7:
 		maxAtks = 2
 	
-	maxhp += 5
-	hp += 5 * level + 5
+	maxhp += 10
+	hp += 10 * level + 5
 	
 	if hp > maxhp:
 		hp = maxhp

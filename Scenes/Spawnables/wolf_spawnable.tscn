@@ -341,12 +341,12 @@ height = 46.0
 polygon = PackedVector2Array(-11, -5, 10, -5, 12, 1, 4, 5, -13, 5, -18, 0)
 
 [node name="WolfSpawnable" instance=ExtResource("1_t7ryl")]
-maxHp = 14
+maxHp = 21
 attackSpeed = 70.0
 speed = 10000.0
-damage = 3
+damage = 5
 priority = 3
-expReward = 75
+expReward = 100
 BludGen = 0.25
 cost = 50
 monsterName = "Wolf"

@@ -86,11 +86,13 @@ alignment = 1
 [node name="StatPanel" type="HBoxContainer" parent="UIRoot/ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
 mouse_filter = 2
 
 [node name="Blud" type="Control" parent="UIRoot/ControlPanel/StatPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/ControlPanel/StatPanel/Blud"]
 layout_mode = 1
@@ -143,7 +145,7 @@ vertical_alignment = 2
 [node name="Middle" type="VBoxContainer" parent="UIRoot/ControlPanel/StatPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 0.5
 
 [node name="Time" type="Control" parent="UIRoot/ControlPanel/StatPanel/Middle"]
 layout_mode = 2
