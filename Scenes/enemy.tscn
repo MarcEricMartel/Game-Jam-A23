@@ -403,6 +403,9 @@ color = Color(0.623529, 0, 0, 0.729412)
 wait_time = 2.0
 autostart = true
 
+[node name="Death" type="Timer" parent="."]
+one_shot = true
+
 [node name="LvlUp" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 14
@@ -460,6 +463,8 @@ skew = -0.0837758
 shape = SubResource("CapsuleShape2D_qykhm")
 debug_color = Color(0.956863, 0.203922, 0, 0.419608)
 
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="timeout" from="Atk_cooldown" to="." method="_on_atk_cooldown_timeout"]
+[connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

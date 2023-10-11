@@ -40,6 +40,7 @@ func remove_foe(foe):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	setLevel(8)
 	atk1l.set_disabled(true)
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
@@ -48,6 +49,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if hp <= 0 && !is_dying:
+		$Death.start()
+		$Atk_cooldown.stop()
+		setAnimState("Die")
+		is_attacking = false
+		is_dying = true
+		
+	if is_dying:
+		pass
 	if abs(velocity.x) < 0.2 && abs(velocity.y) < 0.2 && !is_attacking:
 		setAnimState("Idle")
 	elif !is_attacking:
@@ -88,28 +98,31 @@ func _process(delta):
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
 	
+	
 	move_and_slide()
 	
 
 func processAI(objs):
 	var vec: Vector2 = Vector2(0,0)
 	var weight: int = 0
+	if hp <= 0:
+		return vec
 	for obj in objs:
 		if !obj || !obj.isAlive:
 			continue
-		if position.distance_to(obj.position) > 10:
+		if position.distance_to(obj.position) > 50:
 			weight = abs(obj.priority) * position.distance_to(obj.position)
 			vec += weight * position.direction_to(obj.position)
 		else:
 			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp)
-			vec += weight * -position.direction_to(obj.position)
+			vec = weight * -position.direction_to(obj.position)
+			attack()
 	
 	if vec.length() < 5 && objs.size() > 1:
 		vec.y *= 3
 	
 	if velocity.length() < 95 && objs.size() > 1:
 		vec.y += 10
-		#vec.x -= vec.x * .2
 		
 	return vec.normalized() * 100
 	
@@ -133,7 +146,6 @@ func stop_attack():
 func setAnimState(newstate):
 	anim.animation = newstate
 	anim.flip_h = !is_facing_left
-	
 	state = newstate
 	
 
@@ -143,11 +155,6 @@ func receive_damage(dmg):
 	hp -= dmg
 	hitanim.restart()
 	anim.modulate.a = 0.5
-	if hp < 0:
-		velocity = Vector2(0,0)
-		setAnimState("Die")
-		state = "Die"
-		is_dying = true
 	
 
 func receive_exp(x):
@@ -197,12 +204,18 @@ func _on_sprite_animation_looped():
 			attack()
 		else:
 			currAtks = maxAtks
-	if (is_dying):
-		queue_free()
-	else:
-		is_dying = false
+	is_dying = false
 	
 
 func _on_attack_area_body_entered(body):
 	if typeof(body) == typeof(TemplateSpawnable):
 		body.receive_damage(damage)
+
+
+func _on_death_timeout():
+	pass
+
+func _on_sprite_animation_finished():
+	$"..".win_screen()
+	queue_free()
+
