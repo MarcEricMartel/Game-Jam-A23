@@ -10,5 +10,6 @@ bg_color = Color(0.803922, 0.152941, 0.188235, 1)
 
 [resource]
 Label/fonts/font = ExtResource("1_i16b1")
+PanelContainer/styles/panel = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_hf10d")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_jy7e3")

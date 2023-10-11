@@ -1,0 +1,282 @@
+[gd_scene load_steps=41 format=3 uid="uid://bap3ds6o3m4i1"]
+
+[ext_resource type="PackedScene" uid="uid://kkfxguj0lr5a" path="res://Scenes/Spawnables/template_spawnable.tscn" id="1_scjiu"]
+[ext_resource type="Texture2D" uid="uid://ckeayob6k71b1" path="res://Assets/Witch/noBKG_WitchIdle_strip.png" id="2_ryiw4"]
+[ext_resource type="Texture2D" uid="uid://bjwphtahu0exa" path="res://Assets/Witch/noBKG_WitchDeath_strip.png" id="3_1dyhi"]
+[ext_resource type="Texture2D" uid="uid://cy1gf04evv1ds" path="res://Assets/Witch/noBKG_WitchWalk_strip.png" id="4_5ypov"]
+[ext_resource type="Script" path="res://Scenes/Spawnables/AIs/ai_necromancer.gd" id="5_325bs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac0gw"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n56f"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnyfa"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x05ml"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th587"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvqm8"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7bm4"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgty6"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_263bi"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiwir"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j4nm"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4sel"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ck5"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76h0a"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufgko"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okrdd"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4skn"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lup5"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buqnh"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67t86"]
+atlas = ExtResource("3_1dyhi")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7vxc"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7g6u"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kccoy"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orxro"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqibq"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmqev"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptgm7"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caady"]
+atlas = ExtResource("4_5ypov")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adqcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n56f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnyfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x05ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th587")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvqm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7bm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgty6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_263bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiwir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j4nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4sel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16ck5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76h0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufgko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okrdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4skn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lup5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buqnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67t86")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7vxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7g6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kccoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orxro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqibq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmqev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptgm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caady")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2o72"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8t26j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_we6t8"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_apenn"]
+polygon = PackedVector2Array(0, -18, -6, -10, -7, -2, -6, 6, -2, 12, 2, 9, 6, 3, 6, -5, 4, -15)
+
+[sub_resource type="Gradient" id="Gradient_sm8o0"]
+offsets = PackedFloat32Array(0, 0.736573)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tqkl0"]
+gradient = SubResource("Gradient_sm8o0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="NecromancerSpawnable" instance=ExtResource("1_scjiu")]
+maxHp = 20
+speed = 2000.0
+priority = 10
+expReward = 150
+BludGen = 5.0
+cost = 100
+canAttack = false
+monsterName = "Necromancer"
+monsterIcon = SubResource("AtlasTexture_ac0gw")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_adqcd")
+animation = &"default"
+frame = 0
+frame_progress = 0.0
+
+[node name="BodyCollision" parent="." index="2"]
+position = Vector2(0, -2)
+rotation = 0.0
+shape = SubResource("CapsuleShape2D_n2o72")
+
+[node name="AttackCollision" parent="AttackArea" index="0"]
+shape = SubResource("CircleShape2D_8t26j")
+
+[node name="DamageCollision" parent="DamageArea" index="0"]
+shape = SubResource("CircleShape2D_we6t8")
+
+[node name="AI" parent="." index="5"]
+script = ExtResource("5_325bs")
+
+[node name="LightOccluder2D" parent="." index="7"]
+occluder = SubResource("OccluderPolygon2D_apenn")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="8"]
+position = Vector2(0, -13)
+color = Color(0.929412, 0, 0.184314, 1)
+energy = 0.75
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 20.5
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_tqkl0")
+texture_scale = 1.5
