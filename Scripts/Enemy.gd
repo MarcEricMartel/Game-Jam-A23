@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var state: String = "Idle"
 @export var damage: int = 5
 @export var maxAtks: int = 1
-@export var maxcooldown: float = 0.5
+@export var maxcooldown: float = 0.75
 
 @onready var currentcooldown: float = 0
 @onready var killcount: int = 0
@@ -102,30 +102,44 @@ func _process(delta):
 
 func processAI(objs):
 	var vec: Vector2 = Vector2(0,0)
+	var skel = false
 	var weight: int = 0
 	if hp <= 0:
 		return vec
 	for obj in objs:
 		if !obj || !obj.isAlive:
 			continue
-		if position.distance_to(obj.position) > 50:
-			weight = abs(obj.priority) * position.distance_to(obj.position)
-			vec += weight * position.direction_to(obj.position)
-		else:
-			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp)
+		if position.distance_to(obj.position) < 25:
+			if obj.priority == 10:
+				vec += position.direction_to(obj.position) * 30
+				if currentcooldown <= 0:
+					attack()
+					currentcooldown = maxcooldown
+			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp) * 1.25
 			vec = weight * -position.direction_to(obj.position)
 			if currentcooldown <= 0:
 				attack()
 				currentcooldown = maxcooldown
+		else:
+			if obj.priority == 10:
+				skel = true
+				vec = position.direction_to(obj.position) * 10
+				if currentcooldown <= 0:
+					attack()
+					currentcooldown = maxcooldown
+				break
+			weight = abs(obj.priority) * position.distance_to(obj.position)
+			vec += weight * position.direction_to(obj.position)
+			
 	
-	if vec.length() < 5 && objs.size() > 1:
+	if vec.length() < 5 && objs.size() > 1 && !skel:
 		vec.y *= 3
 	
-	if velocity.length() < 95 && objs.size() > 1:
+	if velocity.length() < 95 && objs.size() > 1 && !skel:
 		vec.y += 10
 		vec.x += 5
 		
-	return vec.normalized() * 100
+	return vec.normalized() * 1000
 	
 
 func attack():
@@ -192,7 +206,7 @@ func setLevel(lvl):
 		maxAtks = 2
 	
 	maxhp += 5
-	hp += 10
+	hp += 5 * level + 5
 	
 	if hp > maxhp:
 		hp = maxhp

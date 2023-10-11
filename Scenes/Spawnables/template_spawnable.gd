@@ -93,7 +93,8 @@ func endAttack():
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
-	hitSnd[rng.randi_range(0,4)].play();
+	if hitSnd:
+		hitSnd[rng.randi_range(0,4)].play();
 	if !isAlive:
 		return
 	if currentHp - dmg <= 0:
@@ -104,7 +105,8 @@ func receive_damage(dmg):
 	spawnableUI.setHP(currentHp, maxHp)
 
 func die():
-	dieSnd[rng.randi_range(0,4)].play();
+	if dieSnd:
+		dieSnd[rng.randi_range(0,4)].play();
 	enemy.remove_foe(self)
 	signal_death.emit(self)
 	bodyCollision.disabled = true
@@ -133,5 +135,6 @@ func _on_damage_area_body_entered(body):
 
 
 func _on_tree_entered():
-	spawnSnd[rng.randi_range(0,4)].play();
+	if spawnSnd:
+		spawnSnd[rng.randi_range(0,4)].play();
 	
