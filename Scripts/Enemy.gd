@@ -44,8 +44,6 @@ func _ready():
 	atk1r.set_disabled(true)
 	atk2l.set_disabled(true)
 	atk2r.set_disabled(true)
-	list.append($"../BatSpawnable")
-	list.append($"../BatSpawnable2")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -199,7 +197,10 @@ func _on_sprite_animation_looped():
 			attack()
 		else:
 			currAtks = maxAtks
-	is_dying = false
+	if (is_dying):
+		queue_free()
+	else:
+		is_dying = false
 	
 
 func _on_attack_area_body_entered(body):
