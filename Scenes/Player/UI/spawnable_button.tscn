@@ -58,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_ep8kc")
 toggle_mode = true

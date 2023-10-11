@@ -3,10 +3,23 @@ extends Node2D
 var currentSpawnableScene : PackedScene = null
 @onready var menuZone : Control = $Camera2D/CanvasLayer/PlayerUI.menuZone
 @onready var enemy : CharacterBody2D = $"../Enemy"
+@onready var playableArea : Area2D = $"../PlayableArea"
+
+var isInPlayableArea : bool = false
+
+func _ready():
+	playableArea.mouse_entered.connect(entered_playable_area)
+	playableArea.mouse_exited.connect(exited_playable_area)
 
 func _process(delta):
 	handle_menu_inputs()
 	handle_spawn()
+
+func entered_playable_area():
+	isInPlayableArea = true
+
+func exited_playable_area():
+	isInPlayableArea = false
 
 func handle_menu_inputs():
 	if Input.is_action_just_pressed("fullscreen_toggle"):
@@ -20,7 +33,7 @@ func handle_spawn():
 		spawn_current()
 
 func spawn_current():
-	if is_in_menu() || currentSpawnableScene == null:
+	if !isInPlayableArea || is_in_menu() || currentSpawnableScene == null:
 		return
 	var spawnable = currentSpawnableScene.instantiate()
 	spawnable.global_position = get_global_mouse_position()

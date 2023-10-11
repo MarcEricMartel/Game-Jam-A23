@@ -84,7 +84,6 @@ func endAttack():
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
-	print(currentHp - dmg)
 	if !isAlive:
 		return
 	if currentHp - dmg <= 0:
@@ -102,7 +101,8 @@ func die():
 	isAlive = false
 	animatedSprite.stop()
 	animatedSprite.play("death")
-	animatedSprite.disconnect("animation_finished", endAttack)
+	if animatedSprite.is_connected("animation_finished", endAttack):
+		animatedSprite.disconnect("animation_finished", endAttack)
 	animatedSprite.connect("animation_finished", fadeOut)
 	
 func fadeOut():
