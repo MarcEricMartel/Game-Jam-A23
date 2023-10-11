@@ -1,8 +1,9 @@
-[gd_scene load_steps=86 format=3 uid="uid://v0vtf1d1iusm"]
+[gd_scene load_steps=87 format=3 uid="uid://drfn4qb06jfla"]
 
 [ext_resource type="Script" path="res://Scripts/ending.gd" id="1_1hyxj"]
 [ext_resource type="PackedScene" uid="uid://b8s2seg2lf7wo" path="res://Scenes/Tilemaps/tileset_1.tscn" id="2_yeqls"]
 [ext_resource type="Texture2D" uid="uid://feql3aiqdh1s" path="res://Assets/Knight/noBKG_KnightDeath_strip.png" id="3_1cug1"]
+[ext_resource type="AudioStream" uid="uid://bi0v8rsaauvux" path="res://Assets/Audio/end.wav" id="3_q0fqf"]
 [ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="4_br77t"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="5_pr1ps"]
 [ext_resource type="Texture2D" uid="uid://dd1cbeyvlpn53" path="res://Assets/Wolf/noBKG_WolfIdle_strip.png" id="6_akp47"]
@@ -580,6 +581,7 @@ offset_bottom = 82.0
 theme = ExtResource("4_br77t")
 
 [node name="Fabio" type="Label" parent="."]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 136.0
 offset_right = 197.0
@@ -823,5 +825,10 @@ scale = Vector2(7.765, 7.765)
 sprite_frames = SubResource("SpriteFrames_5yana")
 frame_progress = 0.865996
 flip_h = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q0fqf")
+pitch_scale = 0.4
+autoplay = true
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
