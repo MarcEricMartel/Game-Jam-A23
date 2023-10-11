@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const ATTACK_COOLDOWN : float = 100
 
+var rng = RandomNumberGenerator.new()
+
 @export var maxHp : int = 0
 @export var attackSpeed : float = 0
 @export var speed : float = 0
@@ -22,6 +24,9 @@ const ATTACK_COOLDOWN : float = 100
 @onready var damageCollision : CollisionShape2D = $DamageArea/DamageCollision
 @onready var bodyCollision : CollisionShape2D = $BodyCollision
 @onready var spawnableUI : Control = $UIContainer/SpawnableUI
+@onready var spawnSnd: Array = [ $Spawn1, $Spawn2, $Spawn3, $Spawn4, $Spawn5 ]
+@onready var hitSnd: Array = [ $Hit1, $Hit2, $Hit3, $Hit4, $Hit5 ]
+@onready var dieSnd: Array = [ $Die1, $Die2, $Die3, $Die4, $Die5 ]
 
 var isAlive : bool = true
 var isFacingLeft : bool = false
@@ -88,6 +93,7 @@ func endAttack():
 	animatedSprite.play("default")
 
 func receive_damage(dmg):
+	hitSnd[rng.randi_range(0,4)].play();
 	if !isAlive:
 		return
 	if currentHp - dmg <= 0:
@@ -98,6 +104,7 @@ func receive_damage(dmg):
 	spawnableUI.setHP(currentHp, maxHp)
 
 func die():
+	dieSnd[rng.randi_range(0,4)].play();
 	enemy.remove_foe(self)
 	signal_death.emit(self)
 	bodyCollision.disabled = true
@@ -123,3 +130,8 @@ func clean():
 func _on_damage_area_body_entered(body):
 	if body == enemy:
 		body.receive_damage(damage)
+
+
+func _on_tree_entered():
+	spawnSnd[rng.randi_range(0,4)].play();
+	

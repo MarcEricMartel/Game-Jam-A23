@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://b5lnjonlf4i1b"]
+[gd_scene load_steps=61 format=3 uid="uid://b5lnjonlf4i1b"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_xj62t"]
 [ext_resource type="Texture2D" uid="uid://xn7yb3f5w17m" path="res://Assets/Knight/noBKG_KnightAttack_strip.png" id="2_dclcl"]
@@ -10,9 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://bi63o8min1xh2" path="res://Assets/Audio/Wilhelm_Scream.ogg" id="7_y6usn"]
 [ext_resource type="AudioStream" uid="uid://dj7884l6tki3g" path="res://Assets/Audio/whoosh.ogg" id="8_ygdkj"]
 [ext_resource type="AudioStream" uid="uid://bmu622w5ea05y" path="res://Assets/Audio/mixkit-weak-fast-blow-2145.wav" id="9_myh6x"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xq5nx"]
-polygon = PackedVector2Array(-2, 11, 2, 2, 2, -7, 0, -18, -5, -18, -6, -7, -6, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gjg8"]
 atlas = ExtResource("2_dclcl")
@@ -382,10 +379,6 @@ position = Vector2(10, 10)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_xj62t")
-maxhp = 50
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_xq5nx")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dqf8u")
@@ -456,7 +449,6 @@ position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_p2hkm")
 
 [node name="AttackArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 2
 

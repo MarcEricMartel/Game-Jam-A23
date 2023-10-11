@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://kkfxguj0lr5a"]
+[gd_scene load_steps=40 format=3 uid="uid://kkfxguj0lr5a"]
 
 [ext_resource type="Script" path="res://Scenes/Spawnables/template_spawnable.gd" id="1_rkej7"]
 [ext_resource type="Texture2D" uid="uid://f60ndepwmpj2" path="res://Assets/Bat/noBKG_BatAttack_strip.png" id="2_7ayi7"]
 [ext_resource type="Texture2D" uid="uid://bd74k1s6qdx2r" path="res://Assets/Bat/noBKG_BatDeath_strip.png" id="3_jipj7"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="4_u36ok"]
 [ext_resource type="PackedScene" uid="uid://fojbwshce7ah" path="res://Scenes/Spawnables/UI/SpawnableUI.tscn" id="5_c2blu"]
+[ext_resource type="AudioStream" uid="uid://c5llasu6omp0p" path="res://Assets/Audio/punch-140236.mp3" id="6_jg6bm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0lcs"]
 atlas = ExtResource("2_7ayi7")
@@ -289,4 +290,45 @@ debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_qtt12")
 
+[node name="Spawn1" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Spawn2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Spawn3" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Spawn4" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Spawn5" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jg6bm")
+pitch_scale = 1.78
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jg6bm")
+pitch_scale = 2.51
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jg6bm")
+pitch_scale = 1.3
+
+[node name="Hit4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jg6bm")
+pitch_scale = 1.68
+
+[node name="Hit5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jg6bm")
+pitch_scale = 1.17
+
+[node name="Die1" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Die2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Die3" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Die4" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Die5" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
