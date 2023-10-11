@@ -14,9 +14,9 @@ extends CharacterBody2D
 @export var state: String = "Idle"
 @export var damage: int = 5
 @export var maxAtks: int = 1
-@export var currentcooldown: float = 0
 @export var maxcooldown: float = 0.5
 
+@onready var currentcooldown: float = 0
 @onready var killcount: int = 0
 @onready var currAtks: int = 0
 @onready var anim: Node = get_node("Sprite")
@@ -60,7 +60,8 @@ func _process(delta):
 		setAnimState("Die")
 		is_attacking = false
 		is_dying = true
-		
+		$DeathSnd.play()
+	
 	if is_dying:
 		pass
 	if abs(velocity.x) < 1 && abs(velocity.y) < 1 && !is_attacking:
@@ -119,6 +120,7 @@ func processAI(objs):
 
 func attack():
 	is_attacking = true
+	$AtkSnd.play()
 	
 	setAnimState(atk)
 	if is_facing_left:
@@ -140,6 +142,7 @@ func setAnimState(newstate):
 	
 
 func receive_damage(dmg):
+	$HitSnd.play()
 	if hitanim.is_emitting():
 		pass
 	hp -= dmg
@@ -201,7 +204,7 @@ func _on_sprite_animation_looped():
 func _on_attack_area_body_entered(body):
 	if typeof(body) == typeof(TemplateSpawnable):
 		body.receive_damage(damage)
-
+	
 
 func _on_death_timeout():
 	pass

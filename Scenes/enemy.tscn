@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b5lnjonlf4i1b"]
+[gd_scene load_steps=61 format=3 uid="uid://b5lnjonlf4i1b"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_xj62t"]
 [ext_resource type="Texture2D" uid="uid://xn7yb3f5w17m" path="res://Assets/Knight/noBKG_KnightAttack_strip.png" id="2_dclcl"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://feql3aiqdh1s" path="res://Assets/Knight/noBKG_KnightDeath_strip.png" id="3_iqd0b"]
 [ext_resource type="Texture2D" uid="uid://bof6qeuo2rnso" path="res://Assets/Knight/noBKG_KnightRun_strip.png" id="4_saf4v"]
 [ext_resource type="Texture2D" uid="uid://dhvo0324eu5my" path="res://Assets/star.png" id="6_53bg1"]
+[ext_resource type="AudioStream" uid="uid://d4iu6bpkblkwn" path="res://Assets/Audio/levelup.mp3" id="7_eoo4h"]
+[ext_resource type="AudioStream" uid="uid://bi63o8min1xh2" path="res://Assets/Audio/Wilhelm_Scream.ogg" id="7_y6usn"]
+[ext_resource type="AudioStream" uid="uid://dj7884l6tki3g" path="res://Assets/Audio/whoosh.ogg" id="8_ygdkj"]
+[ext_resource type="AudioStream" uid="uid://bmu622w5ea05y" path="res://Assets/Audio/mixkit-weak-fast-blow-2145.wav" id="9_myh6x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gjg8"]
 atlas = ExtResource("2_dclcl")
@@ -427,6 +431,19 @@ scale_amount_max = 0.01
 color = Color(1, 1, 1, 0.423529)
 
 [node name="LvlUpSnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_eoo4h")
+pitch_scale = 1.5
+
+[node name="AtkSnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ygdkj")
+pitch_scale = 1.78
+
+[node name="HitSnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_myh6x")
+pitch_scale = 0.77
+
+[node name="DeathSnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_y6usn")
 
 [node name="CharacterCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
