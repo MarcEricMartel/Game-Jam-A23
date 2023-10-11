@@ -10,7 +10,7 @@ region = Rect2(0, 0, 64, 64)
 
 [node name="BatSpawnable" instance=ExtResource("1_verf7")]
 maxHp = 10
-attackSpeed = 50.0
+attackSpeed = 20.0
 speed = 4000.0
 damage = 1
 priority = 1
