@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var is_dying: bool = false
 
 @export var level: int = 1
-@export var hp: int = 50
+@export var hp: int = 100
 @export var maxhp: int = 100
 @export var maxvel: float = 2
 @export var experience: int = 0
@@ -178,7 +178,7 @@ func receive_damage(dmg):
 
 func receive_exp(x):
 	experience += x
-	if experience > levelup[level - 1] && level <= 8:
+	while experience > levelup[level - 1] && level <= 8:
 		setLevel(level + 1)
 	
 	exp_gained.emit(experience, 0 if level == 1 else levelup[level - 2] ,levelup[level - 1], level)
