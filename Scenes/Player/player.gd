@@ -13,6 +13,7 @@ var currentCost : float = 0
 var currentStateIcon : Texture2D = null
 var allSpawnedMonsters : Dictionary = {}
 var currentSpawnedMonsters : Array = []
+var maxBludGen : float = 0
 @onready var menuZone : Control = $Camera2D/CanvasLayer/PlayerUI/MenuZone
 @onready var playerUI : Control = $Camera2D/CanvasLayer/PlayerUI
 @onready var enemy : Fabio = $"../Enemy"
@@ -48,6 +49,8 @@ func add_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.append(monster)
 	
 	currentBludGen += monster.BludGen
+	if currentBludGen > maxBludGen:
+		maxBludGen = currentBludGen
 	playerUI.set_blud_gen(currentBludGen)
 	
 	if !allSpawnedMonsters.has(monster.monsterName):

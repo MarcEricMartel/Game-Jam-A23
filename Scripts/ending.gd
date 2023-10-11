@@ -8,6 +8,7 @@ var is_win: bool = true
 var army: Dictionary = {}
 var totalBlud: float = 0
 var remainingTime: String = "0"
+var maxBludGen = 0
 
 func _ready():
 	if is_win:
@@ -34,6 +35,7 @@ func _ready():
 	$TotalArmyComp/Separation/ArmyTotals/Necromancers/AmtNecromancer.text = "0" if !army.has("Necromancer") else str(army["Necromancer"])
 	$"TotalArmyComp/Separation/ArmyTotals/Pit Fiends/AmtPitFiend".text = "0" if !army.has("Pit Fiend") else str(army["Pit Fiend"])
 	$TotalArmyComp/Separation/TotalBludGen/AmtBlud.text = str(floor(totalBlud))
+	$TotalArmyComp/Separation/MaxBludGen/MaxBludGen.text = str(maxBludGen) + "/s"
 	
 func _on_quit_pressed():
 	get_tree().quit()

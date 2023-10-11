@@ -784,6 +784,23 @@ texture = ExtResource("6_vbucy")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="MaxBludGen" type="HBoxContainer" parent="TotalArmyComp/Separation"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="BludGenLabel" type="Label" parent="TotalArmyComp/Separation/MaxBludGen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_br77t")
+text = "Max Blood Gen: "
+
+[node name="MaxBludGen" type="Label" parent="TotalArmyComp/Separation/MaxBludGen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_br77t")
+text = "0/s"
+
 [node name="AmtKill" type="Label" parent="."]
 layout_mode = 0
 offset_left = 144.0

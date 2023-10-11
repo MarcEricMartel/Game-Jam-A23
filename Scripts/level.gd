@@ -28,6 +28,7 @@ func win_screen():
 	end.level = enemy.level
 	end.exp = enemy.experience
 	end.message = "The holy knight Fabio is defeated, Evil has won and your magic staff is safe."
+	end.maxBludGen = player.maxBludGen
 	self.queue_free()
 	get_tree().root.add_child(end)
 	
@@ -41,6 +42,7 @@ func lose_screen():
 	end.exp = enemy.experience
 	end.is_win = false
 	end.message = "The holy knight Fabio destroyed you army of evil and left with your magic staff..."
+	end.maxBludGen = player.maxBludGen
 	self.queue_free()
 	get_tree().root.add_child(end)
 
