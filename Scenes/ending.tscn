@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drfn4qb06jfla"]
+[gd_scene load_steps=4 format=3 uid="uid://drfn4qb06jfla"]
 
 [ext_resource type="Script" path="res://Scripts/ending.gd" id="1_1hyxj"]
 [ext_resource type="PackedScene" uid="uid://b5lnjonlf4i1b" path="res://Scenes/enemy.tscn" id="1_38e81"]
+[ext_resource type="AudioStream" uid="uid://bi0v8rsaauvux" path="res://Assets/Audio/end.wav" id="3_q0fqf"]
 
 [node name="Ending" type="Control"]
 layout_mode = 3
@@ -77,5 +78,10 @@ offset_left = 159.0
 offset_top = 226.0
 offset_right = 199.0
 offset_bottom = 249.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q0fqf")
+pitch_scale = 0.4
+autoplay = true
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
