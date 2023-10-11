@@ -1,10 +1,14 @@
-[gd_scene load_steps=38 format=3 uid="uid://bap3ds6o3m4i1"]
+[gd_scene load_steps=39 format=3 uid="uid://bap3ds6o3m4i1"]
 
 [ext_resource type="PackedScene" uid="uid://kkfxguj0lr5a" path="res://Scenes/Spawnables/template_spawnable.tscn" id="1_scjiu"]
 [ext_resource type="Texture2D" uid="uid://ckeayob6k71b1" path="res://Assets/Witch/noBKG_WitchIdle_strip.png" id="2_ryiw4"]
 [ext_resource type="Texture2D" uid="uid://bjwphtahu0exa" path="res://Assets/Witch/noBKG_WitchDeath_strip.png" id="3_1dyhi"]
 [ext_resource type="Texture2D" uid="uid://cy1gf04evv1ds" path="res://Assets/Witch/noBKG_WitchWalk_strip.png" id="4_5ypov"]
 [ext_resource type="Script" path="res://Scenes/Spawnables/AIs/ai_necromancer.gd" id="5_325bs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac0gw"]
+atlas = ExtResource("2_ryiw4")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n56f"]
 atlas = ExtResource("2_ryiw4")
@@ -232,6 +236,7 @@ BludGen = 10.0
 cost = 75
 canAttack = false
 monsterName = "Necromancer"
+monsterIcon = SubResource("AtlasTexture_ac0gw")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_adqcd")
