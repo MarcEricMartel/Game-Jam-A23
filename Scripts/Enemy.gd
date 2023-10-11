@@ -11,8 +11,8 @@ var freeXpStack = 0
 @onready var is_dying: bool = false
 
 @export var level: int = 1
-@export var hp: int = 100
-@export var maxhp: int = 100
+@export var hp: int = 125
+@export var maxhp: int = 125
 @export var maxvel: float = 2
 @export var experience: int = 0
 @export var state: String = "Idle"
@@ -68,6 +68,7 @@ func _process(delta):
 		pass
 	
 	if hp <= 0 && !is_dying:
+		is_dead = true		
 		$Death.start()
 		$Atk_cooldown.stop()
 		setAnimState("Die")
@@ -75,8 +76,6 @@ func _process(delta):
 		is_dying = true
 		$DeathSnd.play()
 	
-	if is_dying:
-		is_dead = true
 	if abs(velocity.x) < 1 && abs(velocity.y) < 1 && !is_attacking:
 		setAnimState("Idle")
 	elif !is_attacking:
@@ -172,6 +171,8 @@ func setAnimState(newstate):
 	
 
 func receive_damage(dmg):
+	if is_dying || is_dead:
+		return
 	$HitSnd.play()
 	if hitanim.is_emitting():
 		pass
@@ -242,6 +243,8 @@ func _on_sprite_animation_looped():
 	
 
 func _on_attack_area_body_entered(body):
+	if is_dead || is_dying:
+		return
 	if typeof(body) == typeof(TemplateSpawnable):
 		body.receive_damage(damage)
 	
