@@ -8,6 +8,8 @@ extends Control
 @onready var enemyXPLabel : Label = $UIRoot/ControlPanel/StatPanel/Other/MarginContainer/GridContainer/EnemyXPBar/EnemyXPLabel
 @onready var enemyHPBar : ProgressBar = $UIRoot/ControlPanel/StatPanel/Other/MarginContainer/GridContainer/EnemyHPBar
 @onready var enemyHPLabel : Label = $UIRoot/ControlPanel/StatPanel/Other/MarginContainer/GridContainer/EnemyHPBar/EnemyHPLabel
+@onready var timeLabel : Label = $UIRoot/ControlPanel/StatPanel/Middle/Time/HBoxContainer/TimeLabel
+@onready var armyCount : Label = $UIRoot/ControlPanel/StatPanel/Middle/ArmySize/HBoxContainer/ArmyCount
 
 
 signal button_changed(currentButton : Button)
@@ -39,3 +41,9 @@ func set_xp(current, min, max, level):
 	enemyXPBar.min_value = min
 	enemyXPBar.value = current
 	enemyXPLabel.text = "Lvl " + str(level) + " (" + str(current) + "/" + str(max) + "xp)" 
+
+func set_time(text : String):
+	timeLabel.text = text + " s"
+
+func set_army_count(count : int):
+	armyCount.text = str(count)
