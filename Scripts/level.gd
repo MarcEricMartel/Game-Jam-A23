@@ -17,7 +17,7 @@ func _process(delta):
 	if countdown > 1:
 		countdown -= 1
 		time = $Music.get_playback_position()
-		$Time.text = str(length - time)
+		$Time.text = str(length - time - 1)
 	pass
 
 func win_screen():
