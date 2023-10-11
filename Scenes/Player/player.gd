@@ -1,3 +1,4 @@
+class_name Player
 extends Node2D
 
 const BASE_Blud_GEN = 10
@@ -38,6 +39,9 @@ func _process(delta):
 	currentBludAmount += currentBludGen * delta
 	playerUI.set_blud_total(currentBludAmount)
 
+func set_time(text : String):
+	playerUI.set_time(text)
+
 func add_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.append(monster)
 	
@@ -47,12 +51,15 @@ func add_monster(monster : TemplateSpawnable):
 	if !allSpawnedMonsters.has(monster.monsterName):
 		allSpawnedMonsters[monster.monsterName] = 0
 	allSpawnedMonsters[monster.monsterName] += 1
+	
+	playerUI.set_army_count(currentSpawnedMonsters.size())
 
 func remove_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.erase(monster)
 	
 	currentBludGen -= monster.BludGen
 	playerUI.set_blud_gen(currentBludGen)
+	playerUI.set_army_count(currentSpawnedMonsters.size())
 
 func entered_playable_area():
 	cursorState.set_cursor_state("", currentStateIcon)
