@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://kkfxguj0lr5a"]
+[gd_scene load_steps=38 format=3 uid="uid://kkfxguj0lr5a"]
 
 [ext_resource type="Script" path="res://Scenes/Spawnables/template_spawnable.gd" id="1_rkej7"]
 [ext_resource type="Texture2D" uid="uid://f60ndepwmpj2" path="res://Assets/Bat/noBKG_BatAttack_strip.png" id="2_7ayi7"]
 [ext_resource type="Texture2D" uid="uid://bd74k1s6qdx2r" path="res://Assets/Bat/noBKG_BatDeath_strip.png" id="3_jipj7"]
 [ext_resource type="Texture2D" uid="uid://ddvr5ltbo8ome" path="res://Assets/Bat/noBKG_BatFlight_strip.png" id="4_u36ok"]
+[ext_resource type="PackedScene" uid="uid://fojbwshce7ah" path="res://Scenes/Spawnables/UI/SpawnableUI.tscn" id="5_c2blu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y0lcs"]
 atlas = ExtResource("2_7ayi7")
@@ -231,10 +232,25 @@ height = 24.0
 radius = 8.0
 
 [node name="TemplateSpawnable" type="CharacterBody2D"]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 4
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_rkej7")
+
+[node name="UIContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 8.0
+offset_right = 25.0
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="SpawnableUI" parent="UIContainer" instance=ExtResource("5_c2blu")]
+visible = false
+layout_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k6v1d")
@@ -264,5 +280,7 @@ disabled = true
 debug_color = Color(0.639216, 0, 0.156863, 0.419608)
 
 [node name="AI" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
