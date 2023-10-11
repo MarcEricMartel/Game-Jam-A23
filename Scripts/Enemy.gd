@@ -14,6 +14,8 @@ extends CharacterBody2D
 @export var state: String = "Idle"
 @export var damage: int = 5
 @export var maxAtks: int = 1
+@export var currentcooldown: float = 0
+@export var maxcooldown: float = 0.5
 
 @onready var killcount: int = 0
 @onready var currAtks: int = 0
@@ -69,34 +71,16 @@ func _process(delta):
 	if state != "Attack" && state != "Attack2":
 		is_facing_left = velocity.x > 0 && !(velocity.x < 0)
 
+	if currentcooldown > 0.:
+		currentcooldown -= delta
 	# AI STUFF
 	velocity += processAI(list) * delta
-	#var x = 0
-	#var y = 0
 	
-	#if Input.is_action_pressed("ui_left"):
-	#	# Move as long as the key/button is pressed.
-	#	x -= delta * 50
-	#elif Input.is_action_pressed("ui_right"):
-	#	# Move as long as the key/button is pressed.
-	#	x += delta * 50
-	#else:
-	#	velocity.x *= 0.8
-	#if Input.is_action_pressed("ui_up"):
-		# Move as long as the key/button is pressed.
-	#	y -= delta * 50
-	#elif Input.is_action_pressed("ui_down"):
-		# Move as long as the key/button is pressed.
-	#	y += delta * 50
-	#else:
-	#	velocity.y *= 0.8
 	while velocity.length() > 100:
 		velocity.x *= 0.99
 		velocity.y *= 0.99
 	velocity.x *= 0.97
 	velocity.y *= 0.97
-	#velocity.x += x
-	#velocity.y += y
 	
 	if !hitanim.is_emitting():
 		anim.modulate.a = 1
@@ -119,7 +103,9 @@ func processAI(objs):
 		else:
 			weight = obj.priority * position.distance_to(obj.position) * ((maxhp + 1) / hp)
 			vec = weight * -position.direction_to(obj.position)
-			attack()
+			if currentcooldown <= 0:
+				attack()
+				currentcooldown = maxcooldown
 	
 	if vec.length() < 5 && objs.size() > 1:
 		vec.y *= 3
