@@ -5,6 +5,7 @@ const BASE_Blud_GEN = 10
 const STARTING_Blud_AMOUNT = 100
 
 var currentBludAmount : float = 0
+var totalBludGenrated : float = 0
 var currentBludGen : float = 0
 var currentSpawnableScene : PackedScene = null
 var currentRefInstance : TemplateSpawnable = null
@@ -37,6 +38,7 @@ func _process(delta):
 	handle_spawn()
 	handle_cursor_state()
 	currentBludAmount += currentBludGen * delta
+	totalBludGenrated += currentBludGen * delta
 	playerUI.set_blud_total(currentBludAmount)
 
 func set_time(text : String):

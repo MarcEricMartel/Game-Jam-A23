@@ -21,6 +21,8 @@ func _process(delta):
 func win_screen():
 	var enemy = $Enemy
 	var end = load("res://Scenes/ending.tscn").instantiate()
+	end.totalBlud = player.totalBludGenerated
+	end.army = player.allSpawnedMonsters
 	end.killcount = enemy.killcount
 	end.level = enemy.level
 	end.exp = enemy.experience
@@ -31,6 +33,8 @@ func win_screen():
 func lose_screen():
 	var enemy = $Enemy
 	var end = load("res://Scenes/ending.tscn").instantiate()
+	end.totalBlud = player.totalBludGenerated
+	end.army = player.allSpawnedMonsters
 	end.killcount = enemy.killcount
 	end.level = enemy.level
 	end.exp = enemy.experience
