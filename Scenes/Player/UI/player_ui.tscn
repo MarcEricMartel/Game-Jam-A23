@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmvukn3rl6gbx"]
+[gd_scene load_steps=16 format=3 uid="uid://dmvukn3rl6gbx"]
 
 [ext_resource type="Script" path="res://Scenes/Player/UI/player_ui.gd" id="1_4nwdk"]
 [ext_resource type="PackedScene" uid="uid://dl0d1m1gfcd4o" path="res://Scenes/Player/UI/bat_button.tscn" id="1_tnnk6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://iy5flm8rgj60" path="res://Assets/Inverted hourglass1.png" id="5_vr1sw"]
 [ext_resource type="Texture2D" uid="uid://p3scltkq3g87" path="res://Assets/16.png" id="6_id56p"]
 [ext_resource type="PackedScene" uid="uid://5yfkysexanoh" path="res://Scenes/Player/UI/wolf_button.tscn" id="10_igs07"]
+[ext_resource type="PackedScene" uid="uid://d370efcvbuchm" path="res://Scenes/Player/UI/necromancer_button.tscn" id="11_btls2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6oad"]
 bg_color = Color(0.243137, 0.713726, 0.0627451, 0.301961)
@@ -300,15 +301,12 @@ mouse_filter = 2
 
 [node name="BatButton" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
 layout_mode = 2
-button_group = ExtResource("3_7a133")
 
 [node name="WolfButton" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("10_igs07")]
 layout_mode = 2
 
-[node name="SpawnableButton3" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
+[node name="NecromancerButton" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("11_btls2")]
 layout_mode = 2
-button_group = ExtResource("3_7a133")
 
 [node name="SpawnableButton4" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
 layout_mode = 2
-button_group = ExtResource("3_7a133")
