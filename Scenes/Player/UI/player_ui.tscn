@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmvukn3rl6gbx"]
+[gd_scene load_steps=6 format=3 uid="uid://dmvukn3rl6gbx"]
 
 [ext_resource type="Script" path="res://Scenes/Player/UI/player_ui.gd" id="1_4nwdk"]
 [ext_resource type="PackedScene" uid="uid://dl0d1m1gfcd4o" path="res://Scenes/Player/UI/bat_button.tscn" id="1_tnnk6"]
+[ext_resource type="Theme" uid="uid://dr1h7to56a2pv" path="res://Themes/base_theme.tres" id="3_4fgkw"]
 [ext_resource type="ButtonGroup" uid="uid://gjbbywsr8n8b" path="res://Scenes/Player/UI/spawnables_button_group.tres" id="3_7a133"]
+[ext_resource type="Texture2D" uid="uid://kbd5cnmgbqso" path="res://Assets/Sprite-0001.png" id="4_s5lk5"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -39,6 +41,16 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
+[node name="ColorRect" type="ColorRect" parent="UIRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4fgkw")
+color = Color(0.0156863, 0.207843, 0.341176, 0.12549)
+
 [node name="ControlPanel" type="HBoxContainer" parent="UIRoot"]
 layout_mode = 1
 anchors_preset = 15
@@ -47,19 +59,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/separation = 2
 alignment = 1
 
-[node name="StatPanel" type="Control" parent="UIRoot/ControlPanel"]
+[node name="StatPanel" type="HBoxContainer" parent="UIRoot/ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+
+[node name="Blud" type="Control" parent="UIRoot/ControlPanel/StatPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRoot/ControlPanel/StatPanel/Blud"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BludIcon" type="TextureRect" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_s5lk5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_4fgkw")
+text = ":  "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer"]
+layout_mode = 2
+
+[node name="BludGenContainer" type="HBoxContainer" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BludGen" type="Label" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer/VBoxContainer/BludGenContainer"]
+layout_mode = 2
+theme = ExtResource("3_4fgkw")
+text = "10"
+
+[node name="suffix" type="Label" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer/VBoxContainer/BludGenContainer"]
+layout_mode = 2
+theme = ExtResource("3_4fgkw")
+text = "/s"
+
+[node name="BludTotalContainer" type="HBoxContainer" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BludTotal" type="Label" parent="UIRoot/ControlPanel/StatPanel/Blud/HBoxContainer/VBoxContainer/BludTotalContainer"]
+layout_mode = 2
+theme = ExtResource("3_4fgkw")
+text = "100"
+vertical_alignment = 2
 
 [node name="ButtonPanel" type="HBoxContainer" parent="UIRoot/ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_constants/separation = 4
 
 [node name="SpawnableButton" parent="UIRoot/ControlPanel/ButtonPanel" instance=ExtResource("1_tnnk6")]
 layout_mode = 2
