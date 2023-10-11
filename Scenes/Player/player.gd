@@ -1,5 +1,10 @@
 extends Node2D
 
+const BASE_BLOOD_GEN = 10
+const STARTING_BLOOD_AMOUNT = 100
+
+var currentBloodAmount : int = 0
+var currentBloodGen : float = 0
 var currentSpawnableScene : PackedScene = null
 var currentRefInstance : TemplateSpawnable = null
 var currentStateIcon : Texture2D = null
@@ -13,6 +18,9 @@ var currentSpawnedMonsters : Array = []
 var isInPlayableArea : bool = false
 
 func _ready():
+	currentBloodAmount = STARTING_BLOOD_AMOUNT
+	currentBloodGen = BASE_BLOOD_GEN
+	
 	playableArea.mouse_entered.connect(entered_playable_area)
 	playableArea.mouse_exited.connect(exited_playable_area)
 
@@ -21,6 +29,7 @@ func _process(delta):
 	handle_spawn()
 	handle_cursor_state()
 	
+
 func add_monster(monster : TemplateSpawnable):
 	currentSpawnedMonsters.append(monster)
 	if !allSpawnedMonsters.has(monster.monsterName):
