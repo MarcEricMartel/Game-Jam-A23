@@ -14,12 +14,12 @@ atlas = ExtResource("2_0p8tq")
 region = Rect2(0, 0, 64, 64)
 
 [node name="BatSpawnable" instance=ExtResource("1_verf7")]
-maxHp = 10
+maxHp = 7
 attackSpeed = 50.0
 speed = 4000.0
-damage = 2
+damage = 1
 priority = 1
-expReward = 25
+expReward = 15
 BludGen = 0.5
 cost = 20
 minSpawnRange = 10.0
