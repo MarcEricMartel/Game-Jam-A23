@@ -139,7 +139,7 @@ func processAI(objs):
 		vec.y += 10
 		vec.x += 5
 		
-	return vec.normalized() * 1000
+	return vec.normalized() * 2000
 	
 
 func attack():
